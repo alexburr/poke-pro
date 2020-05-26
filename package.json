@@ -1,0 +1,27 @@
+{
+  "name": "poke-pro",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.html",
+  "scripts": {
+    "build": "cpx \"src/js/**/*.js\" \"public/js\" && cpx \"src/index.html\" \"public\" && tsc && lessc src/less/styles.less public/css/styles.css",
+    "build-css": "lessc src/less/styles.less public/css/styles.css",
+    "build-ts": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "author": "Alex Burr",
+  "license": "ISC",
+  "bugs": {
+    "url": ""
+  },
+  "homepage": "",
+  "dependencies": {
+    "braces": "^3.0.2",
+    "cpx": "^1.5.0",
+    "less": "^3.8.1",
+    "typescript": "^3.1.1"
+  }
+}

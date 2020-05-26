@@ -1,0 +1,12 @@
+{
+    "compilerOptions": {
+        "module": "amd",
+        "target": "es6",
+        "sourceMap": false,
+        "outFile": "public/js/poke-pro.js"
+    },
+    "include": [
+      "src/ts/**/*.ts"
+    ],
+    "compileOnSave": false
+}
