@@ -8,12 +8,13 @@
 
 class WeaponManager implements IWeaponManager {
 
-    shapeDrawer: IRectangle;
+    rectangle: IRectangle;
     isWeaponAttached: boolean = false;
+    isWeaponVisible: boolean = false;
     weaponCoords: coords;
 
     constructor(shapeDrawer: IRectangle) {
-        this.shapeDrawer = shapeDrawer;
+        this.rectangle = shapeDrawer;
     }
 
     public activate(): void {
@@ -33,15 +34,16 @@ class WeaponManager implements IWeaponManager {
     }
 
     public isCoordsInWeapon(coords: coords): boolean {  
-        return (coords.x > this.weaponCoords.x &&
-            coords.x < this.weaponCoords.x + CONSTANTS.dimensionsWeapon.width &&
-            coords.y > this.weaponCoords.y &&
-            coords.y < this.weaponCoords.y + CONSTANTS.dimensionsWeapon.height);
+        if (!this.isWeaponVisible) {
+            return false;
+        }
+        return this.rectangle.isCoordsIn(coords);
     }
 
     private drawWeapon(): void {
         this.generateCoords();
         this.drawWeaponRectangle(CONSTANTS.styleFill);
+        this.isWeaponVisible = true;
         window.setTimeout(() => this.eraseWeapon(), CONSTANTS.timeoutWeaponDisappear);
     }
 
@@ -52,7 +54,8 @@ class WeaponManager implements IWeaponManager {
     }
 
     private eraseWeapon(): void {
-        this.shapeDrawer.clearRectangle(this.weaponCoords, CONSTANTS.dimensionsWeapon.width, CONSTANTS.dimensionsWeapon.height);
+        this.rectangle.clear();
+        this.isWeaponVisible = false;
     }
 
     private highlightWeapon(): void {
@@ -60,6 +63,6 @@ class WeaponManager implements IWeaponManager {
     }
 
     private drawWeaponRectangle(style: string) {
-        this.shapeDrawer.drawRectangle(this.weaponCoords, CONSTANTS.dimensionsWeapon.width, CONSTANTS.dimensionsWeapon.height, style);
+        this.rectangle.draw(this.weaponCoords, CONSTANTS.dimensionsWeapon, style);
     }
 }

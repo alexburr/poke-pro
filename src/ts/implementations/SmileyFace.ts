@@ -30,7 +30,7 @@ class SmileyFace implements ISmileyFace {
     }
 
     public isCoordsInEye(coords: coords): boolean {        
-        return (this.leftEye.isCoordsInEye(coords) || this.rightEye.isCoordsInEye(coords));
+        return (this.leftEye.isCoordsIn(coords) || this.rightEye.isCoordsIn(coords));
     }
 
     private drawOuterCircle(): void {        

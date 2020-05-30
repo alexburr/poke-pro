@@ -22,7 +22,7 @@ class Eye implements IEye {
         this.canvasContext.arc(this.coords.x, this.coords.y, CONSTANTS.radiusEye, 0, Math.PI * 2, true);
     }
 
-    public isCoordsInEye(coords: coords): boolean {
+    public isCoordsIn(coords: coords): boolean {
         return (coords.x > this.xBounds.lower &&
             coords.x < this.xBounds.upper &&
             coords.y > this.yBounds.lower &&

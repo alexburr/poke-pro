@@ -1,5 +1,5 @@
 interface IRectangle {
-    drawRectangle(coords: coords, width: number, height: number, fillStyle: string): void;
-    clearRectangle(coords: coords, width: number, height: number): void;
-    isCoordsInRectangle(coords: coords): boolean;
+    draw(coords: coords, dimensions: dimensions, fillStyle: string): void;
+    clear(): void;
+    isCoordsIn(coords: coords): boolean;
 }
