@@ -1,19 +1,18 @@
 /// <reference path="../constants.ts" />
-/// <reference path="../interfaces/IShapeDrawer.ts" />
+/// <reference path="../interfaces/IRectangle.ts" />
+/// <reference path="Rectangle.ts" />
 /// <reference path="../interfaces/IWeaponManager.ts" />
-/// <reference path="ShapeDrawer.ts" />
 /// <reference path="../models/coords.ts" />
+/// <reference path="../models/dimensions.ts" />
 /// <reference path="../Utilities.ts" />
 
 class WeaponManager implements IWeaponManager {
 
-    shapeDrawer: IShapeDrawer;
+    shapeDrawer: IRectangle;
     isWeaponAttached: boolean = false;
     weaponCoords: coords;
-    weaponWidth: number = 50;
-    weaponHeight: number = 50;
 
-    constructor(shapeDrawer: IShapeDrawer) {
+    constructor(shapeDrawer: IRectangle) {
         this.shapeDrawer = shapeDrawer;
     }
 
@@ -24,7 +23,8 @@ class WeaponManager implements IWeaponManager {
     public attachWeapon(attach: boolean): void {
         this.isWeaponAttached = attach;
         if (attach) {
-            this.eraseWeapon();
+            this.highlightWeapon();
+            window.setTimeout(() => this.eraseWeapon(), CONSTANTS.timeoutWeaponHighlight);
         }
     }
 
@@ -34,24 +34,32 @@ class WeaponManager implements IWeaponManager {
 
     public isCoordsInWeapon(coords: coords): boolean {  
         return (coords.x > this.weaponCoords.x &&
-            coords.x < this.weaponCoords.x + this.weaponWidth &&
+            coords.x < this.weaponCoords.x + CONSTANTS.dimensionsWeapon.width &&
             coords.y > this.weaponCoords.y &&
-            coords.y < this.weaponCoords.y + this.weaponHeight);
+            coords.y < this.weaponCoords.y + CONSTANTS.dimensionsWeapon.height);
     }
 
     private drawWeapon(): void {
         this.generateCoords();
-        this.shapeDrawer.drawRectangle(this.weaponCoords, this.weaponWidth, this.weaponHeight);
+        this.drawWeaponRectangle(CONSTANTS.styleFill);
         window.setTimeout(() => this.eraseWeapon(), CONSTANTS.timeoutWeaponDisappear);
     }
 
     private generateCoords(): void {
-        let randomX = Utilities.getRandomInt(640 - this.weaponWidth);        
-        let randomY = Utilities.getRandomInt(480 - this.weaponHeight);
+        let randomX = Utilities.getRandomInt(640 - CONSTANTS.dimensionsWeapon.width);        
+        let randomY = Utilities.getRandomInt(480 - CONSTANTS.dimensionsWeapon.height);
         this.weaponCoords = { x: randomX, y: randomY };
     }
 
     private eraseWeapon(): void {
-        this.shapeDrawer.clearRectangle(this.weaponCoords, this.weaponWidth, this.weaponHeight);
+        this.shapeDrawer.clearRectangle(this.weaponCoords, CONSTANTS.dimensionsWeapon.width, CONSTANTS.dimensionsWeapon.height);
+    }
+
+    private highlightWeapon(): void {
+        this.drawWeaponRectangle(CONSTANTS.styleHighlight);
+    }
+
+    private drawWeaponRectangle(style: string) {
+        this.shapeDrawer.drawRectangle(this.weaponCoords, CONSTANTS.dimensionsWeapon.width, CONSTANTS.dimensionsWeapon.height, style);
     }
 }

@@ -7,8 +7,8 @@
 /// <reference path="implementations/GameCanvas.ts" />
 /// <reference path="interfaces/IScoreKeeper.ts" />
 /// <reference path="implementations/ScoreKeeper.ts" />
-/// <reference path="interfaces/IShapeDrawer.ts" />
-/// <reference path="implementations/ShapeDrawer.ts" />
+/// <reference path="interfaces/IRectangle.ts" />
+/// <reference path="implementations/Rectangle.ts" />
 /// <reference path="interfaces/ISmileyFace.ts" />
 /// <reference path="implementations/SmileyFace.ts" />
 /// <reference path="interfaces/IWeaponManager.ts" />
@@ -17,9 +17,9 @@
 const _canvasCollection: canvasCollection = setupCanvasCollection();
 const _clickWatcher: IClickWatcher = new ClickWatcher(_canvasCollection.canvasClick.canvas);
 const _scoreKeeper: IScoreKeeper = new ScoreKeeper(_canvasCollection.canvasScore.context);
-const _shapeDrawer: IShapeDrawer = new ShapeDrawer(_canvasCollection.canvasWeapons.context);
+const _rectangle: IRectangle = new Rectangle(_canvasCollection.canvasWeapons.context);
 const _smileyFace: ISmileyFace = new SmileyFace(_canvasCollection.canvasFace.context);
-const _weaponManager: IWeaponManager = new WeaponManager(_shapeDrawer);
+const _weaponManager: IWeaponManager = new WeaponManager(_rectangle);
 
 let isWeaponAttached: boolean = false;
 

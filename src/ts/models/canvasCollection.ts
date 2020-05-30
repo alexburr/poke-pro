@@ -1,9 +1,5 @@
 /// <reference path="../interfaces/ICanvas.ts" />
-
-class canvasContextPair {
-    canvas: HTMLCanvasElement;
-    context: CanvasRenderingContext2D;
-}
+/// <reference path="canvasContextPair.ts" />
 
 class canvasCollection {
     canvasFace: canvasContextPair;
@@ -11,10 +7,3 @@ class canvasCollection {
     canvasScore: canvasContextPair;
     canvasClick: canvasContextPair;
 }
-
-// class contextCollection {
-//     contextFace: CanvasRenderingContext2D;
-//     contextWeapons: CanvasRenderingContext2D;
-//     contextScore: CanvasRenderingContext2D;
-//     contextClick: CanvasRenderingContext2D;
-// }
