@@ -1,4 +1,5 @@
 /// <reference path="../constants.ts" />
+/// <reference path="../models/coords.ts" />
 /// <reference path="../interfaces/IShapeDrawer.ts" />
 
 class ShapeDrawer implements IShapeDrawer {
@@ -9,9 +10,21 @@ class ShapeDrawer implements IShapeDrawer {
         this.gameCanvasContext = gameCanvasContext;
     }
 
-    public drawRectangle(): void {        
-        this.gameCanvasContext.fillStyle = 'rgb(200, 0, 0)';
-        this.gameCanvasContext.fillRect(10, 420, 50, 50);
+    public drawRectangle(coords: coords = null, width: number = 0, height: number = 0): void {
+        this.gameCanvasContext.fillStyle = CONSTANTS.styleFill;
+        if (coords == null) {
+            return;
+        } else {
+            this.gameCanvasContext.fillRect(coords.x, coords.y, width, height);
+        }
+    }
+
+    public clearRectangle(coords: coords = null, width: number = 0, height: number = 0): void {
+        if (coords == null) {
+            return;
+        } else {
+            this.gameCanvasContext.clearRect(coords.x, coords.y, width, height);
+        }
     }
 
     public isCoordsInRectangle(coords: coords): boolean {  

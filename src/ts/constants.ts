@@ -14,9 +14,12 @@ class Constants {
     styleBackground: string;
     styleStroke: string;
     styleFill: string;
+    styleText: string;
     pointsPoke: number;
     pointsWeaponPoke: number;
     textScore: string;
+    timeoutWeaponAppear: number;
+    timeoutWeaponDisappear: number;
 }
 
 const CONSTANTS: Constants = {
@@ -31,9 +34,12 @@ const CONSTANTS: Constants = {
     radiusOuterCircle: 50,
     radiusMouth: 35,
     styleBackground: 'rgb(0,0,0)',
-    styleStroke: 'rgb(255, 255, 0)',
-    styleFill: 'rgb(255, 255, 0)',
+    styleStroke: 'rgb(200, 200, 200)',
+    styleFill: 'rgb(200, 0, 0)',
+    styleText: 'rgb(200, 200, 0)',
     pointsPoke: 3,
     pointsWeaponPoke: 10,
-    textScore: 'SCORE:'
+    textScore: 'SCORE:',
+    timeoutWeaponAppear: 3000,
+    timeoutWeaponDisappear: 3000
 };

@@ -5,8 +5,8 @@ class GameCanvas implements ICanvas {
     canvas: HTMLCanvasElement;
     canvasContext: CanvasRenderingContext2D;
 
-    constructor() {
-        this.canvas = <HTMLCanvasElement>document.getElementById("gameCanvas");
+    constructor(elementId: string) {
+        this.canvas = <HTMLCanvasElement>document.getElementById(elementId);
         this.canvasContext = this.canvas.getContext('2d');
     }
 

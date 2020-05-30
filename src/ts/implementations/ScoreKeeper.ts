@@ -43,7 +43,7 @@ class ScoreKeeper implements IScoreKeeper {
     public displayScore(): void {
         this.clearScore();
         this.gameCanvasContext.font = '24px sans-serif';
-        this.gameCanvasContext.fillStyle = CONSTANTS.styleFill;
+        this.gameCanvasContext.fillStyle = CONSTANTS.styleText;
         this.gameCanvasContext.fillText(this.currentScore.text, this.coords.x, this.coords.y);
     }
 
