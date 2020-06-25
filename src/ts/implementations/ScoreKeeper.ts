@@ -1,4 +1,4 @@
-/// <reference path="../constants.ts" />
+/// <reference path="../Constants.ts" />
 /// <reference path="../models/score.ts" />
 /// <reference path="../models/coords.ts" />
 /// <reference path="../interfaces/IScoreKeeper.ts" />

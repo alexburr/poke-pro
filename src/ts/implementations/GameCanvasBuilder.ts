@@ -1,7 +1,7 @@
 /// <reference path="../models/canvasCollection.ts" />
 /// <reference path="../Interfaces/IGameCanvas.ts" />
 /// <reference path="GameCanvas.ts" />
-/// <reference path="../constants.ts" />
+/// <reference path="../Constants.ts" />
 
 class GameCanvasBuilder implements IGameCanvasBuilder {
 

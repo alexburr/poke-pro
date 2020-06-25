@@ -1,4 +1,4 @@
-﻿/// <reference path="constants.ts" />
+﻿/// <reference path="Constants.ts" />
 /// <reference path="models/coords.ts" />
 /// <reference path="models/canvasCollection.ts" />
 /// <reference path="Interfaces/IClickWatcher.ts" />
