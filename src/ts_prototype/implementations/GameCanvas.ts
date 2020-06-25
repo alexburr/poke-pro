@@ -1,16 +1,13 @@
-/// <reference path="../Interfaces/IGameCanvas.ts" />
-/// <reference path="../Constants.ts" />
+/// <reference path="../interfaces/ICanvas.ts" />
 
-class GameCanvas implements IGameCanvas {
+class GameCanvas implements ICanvas {
 
     canvas: HTMLCanvasElement;
     canvasContext: CanvasRenderingContext2D;
-    dimensions: dimensions;
 
     constructor(elementId: string) {
         this.canvas = <HTMLCanvasElement>document.getElementById(elementId);
         this.canvasContext = this.canvas.getContext('2d');
-        this.dimensions = { height: _CONSTANTS.canvasHeight, width: _CONSTANTS.canvasWidth };
     }
 
     public getCanvas(): HTMLCanvasElement {
@@ -19,9 +16,5 @@ class GameCanvas implements IGameCanvas {
 
     public getContext(): CanvasRenderingContext2D {
         return this.canvasContext;
-    }
-
-    public getDimensions(): dimensions {
-        return this.dimensions;
     }
 }

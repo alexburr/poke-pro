@@ -1,4 +1,4 @@
-/// <reference path="../Interfaces/IGameCanvas.ts" />
+/// <reference path="../interfaces/ICanvas.ts" />
 /// <reference path="canvasContextPair.ts" />
 
 class canvasCollection {
