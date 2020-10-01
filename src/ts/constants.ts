@@ -9,6 +9,7 @@ class Constants {
     coordsScore: coords;
     debug: boolean;
     dimensionsEye: dimensions;
+    durationDodge: number;
     durationPoke: number;
     // dimensionsWeapon: dimensions;
     fontScore: string;
@@ -30,6 +31,8 @@ class Constants {
     srcFacePokeRight2: string;
     srcFacePokeLeft1: string;
     srcFacePokeLeft2: string;
+    srcFaceDodgeLeft1: string;
+    srcFaceDodgeRight1: string;
     textScore: string;
     timeoutWeaponAppear: number;
     timeoutWeaponDisappear: number;
@@ -45,9 +48,10 @@ const _CONSTANTS: Constants = {
     // coordsOuterCircle: { x: 320, y: 240 },
     // coordsMouth: { x: 320, y: 240 },
     coordsScore: { x: 10, y: 30 },
-    debug: true,
+    debug: false,
     // dimensionsWeapon: { width: 50, height: 50 },
     dimensionsEye: { width: 23, height: 10 },
+    durationDodge: 250,
     durationPoke: 250,
     fontScore: '24px sans-serif',
     messageHit: "OUCH!",
@@ -67,7 +71,9 @@ const _CONSTANTS: Constants = {
     srcFacePokeRight1: './images/face-poke-right1.png',
     srcFacePokeRight2: './images/face-poke-right2.png',    
     srcFacePokeLeft1: './images/face-poke-left1.png',
-    srcFacePokeLeft2: './images/face-poke-left2.png',
+    srcFacePokeLeft2: './images/face-poke-left2.png',  
+    srcFaceDodgeLeft1: './images/face-dodge-left1.png',
+    srcFaceDodgeRight1: './images/face-dodge-right1.png',
     textScore: 'SCORE:',
     timeoutWeaponAppear: 3000,
     timeoutWeaponDisappear: 3000,

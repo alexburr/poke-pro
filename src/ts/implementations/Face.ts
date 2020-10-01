@@ -36,7 +36,9 @@ class FaceState {
 const _FACESTATES: FaceState[] = [
     { stateType: FaceStateType.Standard, duration: 0, src: [ _CONSTANTS.srcFaceStandard ]},
     { stateType: FaceStateType.PokeRight, duration: _CONSTANTS.durationPoke, src: [ _CONSTANTS.srcFacePokeRight1, _CONSTANTS.srcFacePokeRight2 ]},
-    { stateType: FaceStateType.PokeLeft, duration: _CONSTANTS.durationPoke, src: [ _CONSTANTS.srcFacePokeLeft1, _CONSTANTS.srcFacePokeLeft2 ]}
+    { stateType: FaceStateType.PokeLeft, duration: _CONSTANTS.durationPoke, src: [ _CONSTANTS.srcFacePokeLeft1, _CONSTANTS.srcFacePokeLeft2 ]},
+    { stateType: FaceStateType.DodgeRight, duration: _CONSTANTS.durationDodge, src: [ _CONSTANTS.srcFaceDodgeRight1 ]},    
+    { stateType: FaceStateType.DodgeLeft, duration: _CONSTANTS.durationDodge, src: [ _CONSTANTS.srcFaceDodgeLeft1 ]}
 ];
 
 class Face implements IFace {
@@ -44,19 +46,21 @@ class Face implements IFace {
     canClick: boolean = true;
     canvasContext: CanvasRenderingContext2D;
     coords: coords = _CONSTANTS.coordsFace;
-    coordsLefteye: coords = _CONSTANTS.coordsLeftEye;
-    coordsRighteye: coords = _CONSTANTS.coordsRightEye;
+    coordsLeftDodge: coords;
+    coordsRightDodge: coords;
+    coordsLeftEye: coords = _CONSTANTS.coordsLeftEye;
+    coordsRightEye: coords = _CONSTANTS.coordsRightEye;
     defaultFaceStateType: FaceStateType = FaceStateType.Standard;
+    dimensionsDodge: dimensions;
+    dimensionsEye: dimensions = _CONSTANTS.dimensionsEye;
     state: FaceState;
     image: HTMLImageElement = new Image();
     
     constructor(canvasContext: CanvasRenderingContext2D) {
         this.canvasContext = canvasContext;
-        this.state = FaceState.getStateByType(this.defaultFaceStateType);
-        this.image.src = FaceState.getSrcForState(this.state);
-        this.image.addEventListener('load', event => {
-            this.draw();
-        });
+        this.initDodgeArea();
+        this.resetState();
+        this.initImage();
     }
 
     public clear(): void {
@@ -81,6 +85,14 @@ class Face implements IFace {
         if (this.isCoordsInRightEye(coords)) {
             this.setState(FaceStateType.PokeRight);
             return FaceClickResult.Poke;
+        }
+        if (this.isCoordsInLeftDodge(coords)) {
+            this.setState(FaceStateType.DodgeLeft);
+            return FaceClickResult.Dodge;
+        }
+        if (this.isCoordsInRightDodge(coords)) {
+            this.setState(FaceStateType.DodgeRight);
+            return FaceClickResult.Dodge;
         }
         return FaceClickResult.None;
     }
@@ -114,20 +126,45 @@ class Face implements IFace {
         this.setState(this.defaultFaceStateType);
     }
 
+    private initDodgeArea(): void {
+        this.coordsLeftDodge = { x: this.coordsLeftEye.x - 10, y: this.coordsLeftEye.y - 10 };
+        this.coordsRightDodge = { x: this.coordsRightEye.x - 10, y: this.coordsRightEye.y - 10 };
+        this.dimensionsDodge = { width: this.dimensionsEye.width + 20, height: this.dimensionsEye.height + 20 };
+    }
+
+    private initImage(): void {
+        this.image.src = FaceState.getSrcForState(this.state);
+        this.image.addEventListener('load', event => {
+            this.draw();
+        });
+    }
+
+    private isCoordsInLeftDodge(coords: coords): boolean {
+        return Utilities.isCoordsInShape(coords, this.coordsLeftDodge, this.dimensionsDodge);
+    }
+
     private isCoordsInLeftEye(coords: coords): boolean {
-        return Utilities.isCoordsInShape(coords, _CONSTANTS.coordsLeftEye, _CONSTANTS.dimensionsEye);
+        return Utilities.isCoordsInShape(coords, this.coordsLeftEye, this.dimensionsEye);
+    }
+
+    private isCoordsInRightDodge(coords: coords): boolean {
+        return Utilities.isCoordsInShape(coords, this.coordsRightDodge, this.dimensionsDodge);
     }
 
     private isCoordsInRightEye(coords: coords): boolean {
-        return Utilities.isCoordsInShape(coords, _CONSTANTS.coordsRightEye, _CONSTANTS.dimensionsEye);
+        return Utilities.isCoordsInShape(coords, this.coordsRightEye, this.dimensionsEye);
     }
 
     private showDebug(): void {
         this.canvasContext.lineWidth = 1;
         this.canvasContext.strokeStyle = _CONSTANTS.styleDebugStroke;
-        this.canvasContext.rect(this.coordsLefteye.x, this.coordsLefteye.y, _CONSTANTS.dimensionsEye.width, _CONSTANTS.dimensionsEye.height);
+        this.canvasContext.rect(this.coordsLeftEye.x, this.coordsLeftEye.y, this.dimensionsEye.width, this.dimensionsEye.height);
         this.canvasContext.stroke();
-        this.canvasContext.rect(this.coordsRighteye.x, this.coordsRighteye.y, _CONSTANTS.dimensionsEye.width, _CONSTANTS.dimensionsEye.height);
+        this.canvasContext.rect(this.coordsRightEye.x, this.coordsRightEye.y, this.dimensionsEye.width, this.dimensionsEye.height);
+        this.canvasContext.stroke();
+        this.canvasContext.rect(this.coordsLeftDodge.x, this.coordsLeftDodge.y, this.dimensionsDodge.width, this.dimensionsDodge.height);
+        this.canvasContext.stroke();
+        this.canvasContext.rect(this.coordsRightDodge.x, this.coordsRightDodge.y, this.dimensionsDodge.width, this.dimensionsDodge.height);
         this.canvasContext.stroke();
         console.log(this.state);
     }
