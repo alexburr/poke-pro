@@ -29,6 +29,9 @@ class ScoreKeeper implements IScoreKeeper {
 
         this.currentScore.value += points;
         this.currentScore.text = `${_CONSTANTS.textScore} ${this.currentScore.value}`;
+
+        if (_CONSTANTS.debug) { console.log(this.currentScore); }
+
         return points;
     }
 

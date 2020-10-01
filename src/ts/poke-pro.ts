@@ -8,35 +8,39 @@
 /// <reference path="Implementations/GameCanvasBuilder.ts" />
 /// <reference path="Interfaces/IScoreKeeper.ts" />
 /// <reference path="Implementations/ScoreKeeper.ts" />
-
-/*
-/// <reference path="Interfaces/IRectangle.ts" />
-/// <reference path="Implementations/Rectangle.ts" />
-/// <reference path="Interfaces/ISmileyFace.ts" />
-/// <reference path="Implementations/SmileyFace.ts" />
-/// <reference path="Interfaces/IWeaponManager.ts" />
-/// <reference path="Implementations/WeaponManager.ts" />
-*/
+/// <reference path="Interfaces/IFace.ts" />
+/// <reference path="Implementations/Face.ts" />
 
 const _canvasCollection: canvasCollection = new GameCanvasBuilder("container").buildCanvasCollection();
 const _clickWatcher: IClickWatcher = new ClickWatcher(_canvasCollection.canvasClick.canvas);
 const _scoreKeeper: IScoreKeeper = new ScoreKeeper(_canvasCollection.canvasScore.context);
+const _face: IFace = new Face(_canvasCollection.canvasFace.context);
 
 // let isWeaponAttached: boolean = false;
 
 window.onload = () => {
     // this.drawObjects();
     _clickWatcher.watchClicks(this.handleClick);
+    //this.drawObjects();
 };
 
 function handleClick(clickCoords: coords): void {
-    console.log(clickCoords);
-    // let isClickInEye: boolean = _smileyFace.isCoordsInEye(clickCoords);
+    if (_CONSTANTS.debug) { console.log(clickCoords); }
+    
+    let faceClickResult: FaceClickResult = _face.handleClick(clickCoords);
+
+    if (faceClickResult == FaceClickResult.Poke) {
+        _scoreKeeper.addToScore(true, _CONSTANTS.pointsPoke);
+        _scoreKeeper.displayScore();
+    }
+
     // let isClickOnWeapon: boolean = _weaponManager.isCoordsInWeapon(clickCoords);
     
     // if (isClickInEye) {
-    //     this.updateScore(getSpecialPoints());
-    //     _weaponManager.attachWeapon(false);
+    //     // TEMP: Randomly pick an eye to gouge
+    //     _face.setRandomState();
+    //     //this.updateScore(getSpecialPoints());
+    //     //_weaponManager.attachWeapon(false);
     // }
     // else if (isClickOnWeapon) {
     //     _weaponManager.attachWeapon(true);
@@ -51,10 +55,10 @@ function handleClick(clickCoords: coords): void {
 //     _scoreKeeper.displayScore();
 // } 
 
-// function drawObjects(): void {
-//     _smileyFace.draw();
-//     _weaponManager.activate();
-// }
+function drawObjects(): void {
+    //_face.draw();
+    // _weaponManager.activate();
+}
 
 // function getSpecialPoints(): number {
 //     return (_weaponManager.getIsWeaponAttached()) ? CONSTANTS.pointsWeaponPoke : CONSTANTS.pointsPoke;

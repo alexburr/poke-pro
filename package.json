@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.html",
   "scripts": {
-    "build": "cpx \"src/js/**/*.js\" \"public/js\" && cpx \"src/index.html\" \"public\" && tsc && lessc src/less/styles.less public/css/styles.css",
+    "build": "cpx \"src/js/**/*.js\" \"public/js\" && cpx \"src/images/**/*.*\" \"public/images\" && cpx \"src/index.html\" \"public\" && tsc && lessc src/less/styles.less public/css/styles.css",
     "build-css": "lessc src/less/styles.less public/css/styles.css",
     "build-ts": "tsc"
   },
