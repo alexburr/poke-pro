@@ -1,4 +1,4 @@
-interface IFace {    
+interface IFace {
     draw(): void;
     getState(): FaceState;
     handleClick(coords: coords): FaceClickResult;

@@ -1,45 +1,11 @@
+/// <reference path="../Enums/FaceStateType.ts" />
+/// <reference path="../Enums/FaceClickResult.ts" />
+/// <reference path="../models/coords.ts" />
 /// <reference path="../models/coords.ts" />
 /// <reference path="../Constants.ts" />
 /// <reference path="../Utilities.ts" />
 /// <reference path="../interfaces/IFace.ts" />
-
-enum FaceClickResult {
-    Poke,
-    Dodge,
-    None
-}
-
-enum FaceStateType {
-    Standard,
-    PokeRight,
-    PokeLeft,
-    DodgeRight,
-    DodgeLeft
-}
-
-class FaceState {
-    stateType: FaceStateType;
-    duration: number;
-    src: string[];
-
-    public static getStateByType(typeToFind: FaceStateType): FaceState {
-        return  _FACESTATES.find( ({ stateType }) => stateType === typeToFind );
-    }
-
-    public static getSrcForState(state: FaceState) {
-        const numberOfSrcForState: number = state.src.length;
-        const srcIndex = Utilities.randomInteger(0, numberOfSrcForState - 1);
-        return state.src[srcIndex];
-    }
-}
-
-const _FACESTATES: FaceState[] = [
-    { stateType: FaceStateType.Standard, duration: 0, src: [ _CONSTANTS.srcFaceStandard ]},
-    { stateType: FaceStateType.PokeRight, duration: _CONSTANTS.durationPoke, src: [ _CONSTANTS.srcFacePokeRight1, _CONSTANTS.srcFacePokeRight2 ]},
-    { stateType: FaceStateType.PokeLeft, duration: _CONSTANTS.durationPoke, src: [ _CONSTANTS.srcFacePokeLeft1, _CONSTANTS.srcFacePokeLeft2 ]},
-    { stateType: FaceStateType.DodgeRight, duration: _CONSTANTS.durationDodge, src: [ _CONSTANTS.srcFaceDodgeRight1 ]},    
-    { stateType: FaceStateType.DodgeLeft, duration: _CONSTANTS.durationDodge, src: [ _CONSTANTS.srcFaceDodgeLeft1 ]}
-];
+/// <reference path="../implementations/FaceState.ts" />
 
 class Face implements IFace {
 
@@ -101,7 +67,7 @@ class Face implements IFace {
         // We might already be in a "poked" state so we want to not allow the click until after we reset to standard
         if (!this.canClick) return;
 
-        this.state = FaceState.getStateByType(faceStateType);
+        this.state = FaceState.getStateByType(_FACESTATES, faceStateType);
         this.clear();
         this.image.src = FaceState.getSrcForState(this.state);
         this.draw();

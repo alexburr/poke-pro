@@ -1,3 +1,5 @@
+/// <reference path="Implementations/Face.ts" />
+
 class Constants {
     canvasHeight: number;
     canvasWidth: number;
@@ -79,3 +81,11 @@ const _CONSTANTS: Constants = {
     timeoutWeaponDisappear: 3000,
     timeoutWeaponHighlight: 50
 }
+
+const _FACESTATES: FaceState[] = [
+    { stateType: FaceStateType.Standard, duration: 0, src: [ _CONSTANTS.srcFaceStandard ]},
+    { stateType: FaceStateType.PokeRight, duration: _CONSTANTS.durationPoke, src: [ _CONSTANTS.srcFacePokeRight1, _CONSTANTS.srcFacePokeRight2 ]},
+    { stateType: FaceStateType.PokeLeft, duration: _CONSTANTS.durationPoke, src: [ _CONSTANTS.srcFacePokeLeft1, _CONSTANTS.srcFacePokeLeft2 ]},
+    { stateType: FaceStateType.DodgeRight, duration: _CONSTANTS.durationDodge, src: [ _CONSTANTS.srcFaceDodgeRight1 ]},    
+    { stateType: FaceStateType.DodgeLeft, duration: _CONSTANTS.durationDodge, src: [ _CONSTANTS.srcFaceDodgeLeft1 ]}
+];
