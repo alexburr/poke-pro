@@ -30,8 +30,7 @@ class Face implements IFace {
     }
 
     public clear(): void {
-        this.canvasContext.fillStyle = _CONSTANTS.styleBackground;
-        this.canvasContext.fillRect(this.coords.x, this.coords.y, this.image.width, this.image.height);
+        this.canvasContext.clearRect(this.coords.x, this.coords.y, this.image.width, this.image.height);
     }
 
     public draw(): void {
