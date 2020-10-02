@@ -68,7 +68,7 @@ class Face implements IFace {
 
         this.state = FaceState.getStateByType(_FACESTATES, faceStateType);
         this.clear();
-        this.image.src = FaceState.getSrcForState(this.state);
+        this.image = FaceState.getImageForState(this.state);
         this.draw();
 
         // The "poked" state should be held for a brief moment and then reset
@@ -98,7 +98,7 @@ class Face implements IFace {
     }
 
     private initImage(): void {
-        this.image.src = FaceState.getSrcForState(this.state);
+        //this.image = FaceState.getImageForState(this.state);
         this.image.addEventListener('load', event => {
             this.draw();
         });

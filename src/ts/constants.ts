@@ -1,4 +1,5 @@
 /// <reference path="Implementations/Face.ts" />
+/// <reference path="Implementations/Images.ts" />
 
 class Constants {
     canvasHeight: number;
@@ -28,13 +29,6 @@ class Constants {
     // styleHighlight: string;
     pointsPoke: number;
     //pointsWeaponPoke: number;
-    srcFaceStandard: string;
-    srcFacePokeRight1: string;
-    srcFacePokeRight2: string;
-    srcFacePokeLeft1: string;
-    srcFacePokeLeft2: string;
-    srcFaceDodgeLeft1: string;
-    srcFaceDodgeRight1: string;
     textScore: string;
     timeoutWeaponAppear: number;
     timeoutWeaponDisappear: number;
@@ -69,23 +63,26 @@ const _CONSTANTS: Constants = {
     // styleHighlight: 'rgb(200, 200, 200)',
     pointsPoke: 3,
     //pointsWeaponPoke: 10,
-    srcFaceStandard: './images/face-standard.png',
-    srcFacePokeRight1: './images/face-poke-right1.png',
-    srcFacePokeRight2: './images/face-poke-right2.png',    
-    srcFacePokeLeft1: './images/face-poke-left1.png',
-    srcFacePokeLeft2: './images/face-poke-left2.png',  
-    srcFaceDodgeLeft1: './images/face-dodge-left1.png',
-    srcFaceDodgeRight1: './images/face-dodge-right1.png',
     textScore: 'SCORE:',
     timeoutWeaponAppear: 3000,
     timeoutWeaponDisappear: 3000,
     timeoutWeaponHighlight: 50
 }
 
+const _IMAGES: Images = new Images([
+    { name: "srcFaceStandard", src: './images/face-standard.png' },
+    { name: "srcFacePokeRight1", src: './images/face-poke-right1.png' },
+    { name: "srcFacePokeRight2", src: './images/face-poke-right2.png' },
+    { name: "srcFacePokeLeft1", src: './images/face-poke-left1.png' },
+    { name: "srcFacePokeLeft2", src: './images/face-poke-left2.png' },
+    { name: "srcFaceDodgeLeft1", src: './images/face-dodge-left1.png' },
+    { name: "srcFaceDodgeRight1", src: './images/face-dodge-right1.png' }
+]);
+
 const _FACESTATES: FaceState[] = [
-    { stateType: FaceStateType.Standard, duration: 0, src: [ _CONSTANTS.srcFaceStandard ]},
-    { stateType: FaceStateType.PokeRight, duration: _CONSTANTS.durationPoke, src: [ _CONSTANTS.srcFacePokeRight1, _CONSTANTS.srcFacePokeRight2 ]},
-    { stateType: FaceStateType.PokeLeft, duration: _CONSTANTS.durationPoke, src: [ _CONSTANTS.srcFacePokeLeft1, _CONSTANTS.srcFacePokeLeft2 ]},
-    { stateType: FaceStateType.DodgeRight, duration: _CONSTANTS.durationDodge, src: [ _CONSTANTS.srcFaceDodgeRight1 ]},    
-    { stateType: FaceStateType.DodgeLeft, duration: _CONSTANTS.durationDodge, src: [ _CONSTANTS.srcFaceDodgeLeft1 ]}
+    { stateType: FaceStateType.Standard, duration: 0, src: [ _IMAGES.getImgSrcByName("srcFaceStandard") ]},
+    { stateType: FaceStateType.PokeRight, duration: _CONSTANTS.durationPoke, src: [ _IMAGES.getImgSrcByName("srcFacePokeRight1"), _IMAGES.getImgSrcByName("srcFacePokeRight2") ]},
+    { stateType: FaceStateType.PokeLeft, duration: _CONSTANTS.durationPoke, src: [ _IMAGES.getImgSrcByName("srcFacePokeLeft1"), _IMAGES.getImgSrcByName("srcFacePokeLeft2") ]},
+    { stateType: FaceStateType.DodgeRight, duration: _CONSTANTS.durationDodge, src: [ _IMAGES.getImgSrcByName("srcFaceDodgeRight1") ]},    
+    { stateType: FaceStateType.DodgeLeft, duration: _CONSTANTS.durationDodge, src: [ _IMAGES.getImgSrcByName("srcFaceDodgeLeft1") ]}
 ];

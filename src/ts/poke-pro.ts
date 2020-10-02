@@ -19,6 +19,7 @@ const _face: IFace = new Face(_canvasCollection.canvasFace.context);
 // let isWeaponAttached: boolean = false;
 
 window.onload = () => {
+
     // this.drawObjects();
     _clickWatcher.watchClicks(this.handleClick);
     //this.drawObjects();
