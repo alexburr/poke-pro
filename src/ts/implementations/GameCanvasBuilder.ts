@@ -7,6 +7,7 @@ class GameCanvasBuilder implements IGameCanvasBuilder {
 
     canvasContainer: HTMLElement;
     canvasFace: HTMLCanvasElement;
+    canvasFinger: HTMLCanvasElement;
     canvasWeapons: HTMLCanvasElement;
     canvasScore: HTMLCanvasElement;
     canvasClick: HTMLCanvasElement;
@@ -14,6 +15,7 @@ class GameCanvasBuilder implements IGameCanvasBuilder {
     constructor(containerId: string) {
         this.canvasContainer = document.getElementById(containerId);
         this.canvasFace = document.createElement("canvas");
+        this.canvasFinger = document.createElement("canvas");
         this.canvasWeapons = document.createElement("canvas");
         this.canvasScore = document.createElement("canvas");
         this.canvasClick = document.createElement("canvas");
@@ -21,6 +23,9 @@ class GameCanvasBuilder implements IGameCanvasBuilder {
         this.canvasFace.id = "canvasFace";
         this.canvasFace.width = _CONSTANTS.canvasWidth;
         this.canvasFace.height = _CONSTANTS.canvasHeight;
+        this.canvasFinger.id = "canvasFinger";
+        this.canvasFinger.width = _CONSTANTS.canvasWidth;
+        this.canvasFinger.height = _CONSTANTS.canvasHeight;
         this.canvasWeapons.id = "canvasWeapons";
         this.canvasWeapons.width = _CONSTANTS.canvasWidth;
         this.canvasWeapons.height = _CONSTANTS.canvasHeight;
@@ -32,6 +37,7 @@ class GameCanvasBuilder implements IGameCanvasBuilder {
         this.canvasClick.height = _CONSTANTS.canvasHeight;
 
         this.canvasContainer.appendChild(this.canvasFace);
+        this.canvasContainer.appendChild(this.canvasFinger);
         this.canvasContainer.appendChild(this.canvasWeapons);
         this.canvasContainer.appendChild(this.canvasScore);
         this.canvasContainer.appendChild(this.canvasClick);
@@ -40,12 +46,14 @@ class GameCanvasBuilder implements IGameCanvasBuilder {
     public buildCanvasCollection(): canvasCollection {
         const _gameGanvasCollection = {
             canvasFace: new GameCanvas(this.canvasFace.id),
+            canvasFinger: new GameCanvas(this.canvasFinger.id),
             canvasWeapons: new GameCanvas(this.canvasWeapons.id),
             canvasScore: new GameCanvas(this.canvasScore.id),
             canvasClick: new GameCanvas(this.canvasClick.id)
         };
         return {
             canvasFace: { canvas: _gameGanvasCollection.canvasFace.getCanvas(), context: _gameGanvasCollection.canvasFace.getContext() },
+            canvasFinger: { canvas: _gameGanvasCollection.canvasFinger.getCanvas(), context: _gameGanvasCollection.canvasFinger.getContext() },
             canvasWeapons: { canvas: _gameGanvasCollection.canvasWeapons.getCanvas(), context: _gameGanvasCollection.canvasWeapons.getContext() },
             canvasScore: { canvas: _gameGanvasCollection.canvasScore.getCanvas(), context: _gameGanvasCollection.canvasScore.getContext() },
             canvasClick: { canvas: _gameGanvasCollection.canvasClick.getCanvas(), context: _gameGanvasCollection.canvasClick.getContext() }

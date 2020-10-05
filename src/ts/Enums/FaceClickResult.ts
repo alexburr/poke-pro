@@ -1,5 +1,7 @@
 enum FaceClickResult {
-    Poke,
-    Dodge,
+    PokeLeft,
+    PokeRight,
+    DodgeLeft,
+    DodgeRight,
     None
 }

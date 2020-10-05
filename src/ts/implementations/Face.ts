@@ -42,24 +42,45 @@ class Face implements IFace {
         return this.state;
     }
 
-    public handleClick(coords: coords): FaceClickResult {
+    public getClickResult(coords: coords): FaceClickResult {
+
+        let result: FaceClickResult = FaceClickResult.None;
+
         if (this.isCoordsInLeftEye(coords)) {
-            this.setState(FaceStateType.PokeLeft);
-            return FaceClickResult.Poke;
+            result = FaceClickResult.PokeLeft;
         }
-        if (this.isCoordsInRightEye(coords)) {
-            this.setState(FaceStateType.PokeRight);
-            return FaceClickResult.Poke;
+        else if (this.isCoordsInRightEye(coords)) {
+            result = FaceClickResult.PokeRight;
         }
-        if (this.isCoordsInLeftDodge(coords)) {
-            this.setState(FaceStateType.DodgeLeft);
-            return FaceClickResult.Dodge;
+        else if (this.isCoordsInLeftDodge(coords)) {
+            result = FaceClickResult.DodgeRight;
         }
-        if (this.isCoordsInRightDodge(coords)) {
-            this.setState(FaceStateType.DodgeRight);
-            return FaceClickResult.Dodge;
+        else if (this.isCoordsInRightDodge(coords)) {
+            result = FaceClickResult.DodgeLeft;
         }
-        return FaceClickResult.None;
+
+        return result;
+    }
+
+    public handleClick(faceClickResult: FaceClickResult, animationTimeout: number): void {
+
+        switch(faceClickResult) {
+            case FaceClickResult.PokeLeft:
+                this.setState(FaceStateType.PokeLeft);
+                break;
+            case FaceClickResult.PokeRight:
+                this.setState(FaceStateType.PokeRight);
+                break;
+            case FaceClickResult.DodgeLeft:
+                this.setState(FaceStateType.DodgeLeft);
+                break;
+            case FaceClickResult.DodgeRight:
+                this.setState(FaceStateType.DodgeRight);
+                break;
+            default:
+                this.resetState();
+                break;
+        }
     }
 
     public setState(faceStateType: FaceStateType): void {
@@ -98,7 +119,6 @@ class Face implements IFace {
     }
 
     private initImage(): void {
-        //this.image = FaceState.getImageForState(this.state);
         this.image.addEventListener('load', event => {
             this.draw();
         });

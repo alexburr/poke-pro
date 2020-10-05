@@ -4,8 +4,11 @@
   "description": "",
   "main": "index.html",
   "scripts": {
-    "build": "cpx \"src/js/**/*.js\" \"public/js\" && cpx \"src/images/**/*.*\" \"public/images\" && cpx \"src/index.html\" \"public\" && tsc && lessc src/less/styles.less public/css/styles.css",
-    "build-css": "lessc src/less/styles.less public/css/styles.css",
+    "build": "npm run build-ts && npm run build-copy-js && npm run build-copy-images && npm run build-copy-html && npm run build-less",
+    "build-less": "lessc src/less/styles.less public/css/styles.css",
+    "build-copy-html": "cpx \"src/index.html\" \"public\"",
+    "build-copy-images": "cpx \"src/images/**/*.*\" \"public/images\"",
+    "build-copy-js": "cpx \"src/js_temp/**/*.js\" \"public/js\"",
     "build-ts": "tsc"
   },
   "repository": {

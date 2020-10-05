@@ -4,13 +4,17 @@
 class Constants {
     canvasHeight: number;
     canvasWidth: number;
+    coordsClickable: coords;
     coordsLeftEye: coords;
     coordsRightEye: coords;
     coordsFace: coords;
+    coordsFinger1: coords;
+    coordsFinger2: coords;
     // coordsOuterCircle: coords;
     // coordsMouth: coords;
     coordsScore: coords;
     debug: boolean;
+    dimensionsClickable: dimensions;
     dimensionsEye: dimensions;
     durationDodge: number;
     durationPoke: number;
@@ -18,6 +22,8 @@ class Constants {
     fontScore: string;
     messageHit: string;
     messageMiss: string;
+    ms60fps: number;
+    ms30fps: number;
     //radiusEye: number;
     //radiusOuterCircle: number;
     //radiusMouth: number;
@@ -38,7 +44,10 @@ class Constants {
 const _CONSTANTS: Constants = {
     canvasHeight: 480,
     canvasWidth: 640,
+    coordsClickable: { x: 170, y: 240 },
     coordsFace: { x: 135, y: 200 },
+    coordsFinger1: { x: 170, y: 440 },
+    coordsFinger2: { x: 170, y: 319 },
     coordsLeftEye: { x: 290, y: 285 },
     coordsRightEye: { x: 333, y: 285 },
     // coordsOuterCircle: { x: 320, y: 240 },
@@ -46,12 +55,15 @@ const _CONSTANTS: Constants = {
     coordsScore: { x: 10, y: 30 },
     debug: false,
     // dimensionsWeapon: { width: 50, height: 50 },
+    dimensionsClickable: { width: 300, height: 200 },
     dimensionsEye: { width: 23, height: 10 },
     durationDodge: 250,
     durationPoke: 250,
     fontScore: '24px sans-serif',
     messageHit: "OUCH!",
     messageMiss: "miss",
+    ms60fps: 16,
+    ms30fps: 33,
     // radiusEye: 5,
     // radiusOuterCircle: 50,
     // radiusMouth: 35,
@@ -76,7 +88,10 @@ const _IMAGES: Images = new Images([
     { name: "srcFacePokeLeft1", src: './images/face-poke-left1.png' },
     { name: "srcFacePokeLeft2", src: './images/face-poke-left2.png' },
     { name: "srcFaceDodgeLeft1", src: './images/face-dodge-left1.png' },
-    { name: "srcFaceDodgeRight1", src: './images/face-dodge-right1.png' }
+    { name: "srcFaceDodgeRight1", src: './images/face-dodge-right1.png' },
+    { name: "srcFingerPoke1", src: "./images/fingerpoke1.png" },
+    { name: "srcFingerPoke2", src: "./images/fingerpoke2.png" },
+    { name: "srcFingerPoke3", src: "./images/fingerpoke3.png" }
 ]);
 
 const _FACESTATES: FaceState[] = [

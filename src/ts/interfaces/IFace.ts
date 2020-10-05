@@ -1,7 +1,8 @@
 interface IFace {
     draw(): void;
     getState(): FaceState;
-    handleClick(coords: coords): FaceClickResult;
+    getClickResult(coords: coords): FaceClickResult;
+    handleClick(faceClickResult: FaceClickResult, animationTimeout: number): void;
     setRandomState(): void;
     setState(faceStateType: FaceStateType): void;
     resetState(): void;
