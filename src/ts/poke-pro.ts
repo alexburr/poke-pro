@@ -14,13 +14,16 @@
 /// <reference path="Implementations/Finger.ts" />
 /// <reference path="Interfaces/IClickHandler.ts" />
 /// <reference path="Implementations/ClickHandler.ts" />
+/// <reference path="Interfaces/IPointFloater.ts" />
+/// <reference path="Implementations/PointFloater.ts" />
 
 const _canvasCollection: canvasCollection = new GameCanvasBuilder("container").buildCanvasCollection();
 const _clickWatcher: IClickWatcher = new ClickWatcher(_canvasCollection.canvasClick.canvas);
+const _pointFloater: IPointFloater = new PointFloater(_canvasCollection.canvasPointFloater.context);
 const _scoreKeeper: IScoreKeeper = new ScoreKeeper(_canvasCollection.canvasScore.context);
 const _face: IFace = new Face(_canvasCollection.canvasFace.context);
 const _finger: IFinger = new Finger(_canvasCollection.canvasFinger.context);
-const _clickHandler: IClickHandler = new ClickHandler(_face, _finger, _scoreKeeper);
+const _clickHandler: IClickHandler = new ClickHandler(_face, _finger, _pointFloater, _scoreKeeper);
 const _pokeAnimationTimeout: number = _finger.getAnimationTimeout();
 
 // let isWeaponAttached: boolean = false;

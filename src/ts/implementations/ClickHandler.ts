@@ -5,12 +5,14 @@ class ClickHandler implements IClickHandler {
 
     face: IFace;
     finger: IFinger;
+    pointFloater: IPointFloater;
     scoreKeeper: IScoreKeeper;
     pokeAnimationTimeout: number;
 
-    constructor(face: IFace, finger: IFinger, scoreKeeper: IScoreKeeper) {
+    constructor(face: IFace, finger: IFinger, pointFloater: IPointFloater, scoreKeeper: IScoreKeeper) {
         this.face = face;
         this.finger = finger;
+        this.pointFloater = pointFloater;
         this.scoreKeeper = scoreKeeper;
         this.pokeAnimationTimeout = this.finger.getAnimationTimeout() * 2;
     }
@@ -28,6 +30,7 @@ class ClickHandler implements IClickHandler {
                 }, this.pokeAnimationTimeout);
 
                 if (faceClickResult == FaceClickResult.PokeLeft || faceClickResult == FaceClickResult.PokeRight) {
+                    this.pointFloater.floatPoints(clickCoords, _CONSTANTS.pointsPoke);
                     this.scoreKeeper.addToScore(true, _CONSTANTS.pointsPoke);
                     this.scoreKeeper.displayScore();
                 }

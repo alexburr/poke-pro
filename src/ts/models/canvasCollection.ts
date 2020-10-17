@@ -6,5 +6,6 @@ class canvasCollection {
     canvasFinger: canvasContextPair;
     canvasWeapons: canvasContextPair;
     canvasScore: canvasContextPair;
+    canvasPointFloater: canvasContextPair;
     canvasClick: canvasContextPair;
 }

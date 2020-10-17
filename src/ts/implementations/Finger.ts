@@ -2,7 +2,7 @@
 
 class Finger implements IFinger {
     
-    animationTimeout: number = _CONSTANTS.ms30fps * 4;
+    animationTimeout: number = _CONSTANTS.ms30fps * 2;
     canvasContext: CanvasRenderingContext2D;
     coords: coords = _CONSTANTS.coordsFinger1;
     image: HTMLImageElement;
@@ -20,7 +20,7 @@ class Finger implements IFinger {
         // a fixed point first.
 
         this.clear();
-        this.setFinger2();
+        this.setFinger2(coords);
         this.draw();
 
         setTimeout(() => {
@@ -32,7 +32,7 @@ class Finger implements IFinger {
             setTimeout(() => {
 
                 this.clear();
-                this.setFinger2();
+                this.setFinger2(coords);
                 this.draw();
 
                 setTimeout(() => {
@@ -41,7 +41,7 @@ class Finger implements IFinger {
 
                 }, this.animationTimeout);
 
-            }, this.animationTimeout);
+            }, this.animationTimeout * 2);
 
         }, this.animationTimeout);        
     }
@@ -69,8 +69,8 @@ class Finger implements IFinger {
         this.image = _IMAGES.getImageByName('srcFingerPoke1');
     }
 
-    private setFinger2(): void {
-        this.coords = _CONSTANTS.coordsFinger2;
+    private setFinger2(coords: coords): void {
+        this.coords = Utilities.midWayPoint(_CONSTANTS.coordsFinger2, coords);
         this.image = _IMAGES.getImageByName('srcFingerPoke2');
     }
 

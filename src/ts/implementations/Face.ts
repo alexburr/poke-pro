@@ -113,9 +113,9 @@ class Face implements IFace {
     }
 
     private initDodgeArea(): void {
-        this.coordsLeftDodge = { x: this.coordsLeftEye.x - 10, y: this.coordsLeftEye.y - 10 };
-        this.coordsRightDodge = { x: this.coordsRightEye.x - 10, y: this.coordsRightEye.y - 10 };
-        this.dimensionsDodge = { width: this.dimensionsEye.width + 20, height: this.dimensionsEye.height + 20 };
+        this.coordsLeftDodge = { x: this.coordsLeftEye.x - 70, y: this.coordsLeftEye.y - 30 };
+        this.coordsRightDodge = { x: this.coordsRightEye.x - 10, y: this.coordsRightEye.y - 30 };
+        this.dimensionsDodge = { width: this.dimensionsEye.width + 80, height: this.dimensionsEye.height + 130 };
     }
 
     private initImage(): void {
@@ -143,14 +143,12 @@ class Face implements IFace {
     private showDebug(): void {
         this.canvasContext.lineWidth = 1;
         this.canvasContext.strokeStyle = _CONSTANTS.styleDebugStroke;
-        this.canvasContext.rect(this.coordsLeftEye.x, this.coordsLeftEye.y, this.dimensionsEye.width, this.dimensionsEye.height);
-        this.canvasContext.stroke();
-        this.canvasContext.rect(this.coordsRightEye.x, this.coordsRightEye.y, this.dimensionsEye.width, this.dimensionsEye.height);
-        this.canvasContext.stroke();
-        this.canvasContext.rect(this.coordsLeftDodge.x, this.coordsLeftDodge.y, this.dimensionsDodge.width, this.dimensionsDodge.height);
-        this.canvasContext.stroke();
-        this.canvasContext.rect(this.coordsRightDodge.x, this.coordsRightDodge.y, this.dimensionsDodge.width, this.dimensionsDodge.height);
-        this.canvasContext.stroke();
+        this.canvasContext.strokeRect(this.coordsLeftEye.x, this.coordsLeftEye.y, this.dimensionsEye.width, this.dimensionsEye.height);
+        this.canvasContext.strokeRect(this.coordsRightEye.x, this.coordsRightEye.y, this.dimensionsEye.width, this.dimensionsEye.height);
+        this.canvasContext.strokeStyle = "rgb(255,0,0)";
+        this.canvasContext.strokeRect(this.coordsLeftDodge.x, this.coordsLeftDodge.y, this.dimensionsDodge.width, this.dimensionsDodge.height);
+        this.canvasContext.strokeStyle = "rgb(0,0,255)";
+        this.canvasContext.strokeRect(this.coordsRightDodge.x, this.coordsRightDodge.y, this.dimensionsDodge.width, this.dimensionsDodge.height);
         console.log(this.state);
     }
 }

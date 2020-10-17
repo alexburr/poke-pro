@@ -9,7 +9,8 @@
     "build-copy-html": "cpx \"src/index.html\" \"public\"",
     "build-copy-images": "cpx \"src/images/**/*.*\" \"public/images\"",
     "build-copy-js": "cpx \"src/js_temp/**/*.js\" \"public/js\"",
-    "build-ts": "tsc"
+    "build-ts": "tsc",
+    "build-ts-js": "npm run build-ts && npm run build-copy-js"
   },
   "repository": {
     "type": "git",

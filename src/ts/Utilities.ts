@@ -14,4 +14,13 @@ abstract class Utilities {
             coords.y > shapeCoords.y &&
             coords.y < shapeCoords.y + shapeDimensions.height);
     }
+
+    public static midWayPoint(coords1: coords, coords2: coords): coords {
+        let result: coords = new coords();
+
+        result.x = (coords1.x + coords2.x) / 2;
+        result.y = (coords1.y + coords2.y) / 2;
+
+        return result;
+    }
 }

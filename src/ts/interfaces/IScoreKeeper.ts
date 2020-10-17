@@ -1,7 +1,8 @@
 interface IScoreKeeper {
     addToScore(hit: boolean, specialPoints: number): number;
     clearScore(): void;
-    displayScore(): void;
+    displayScore(): void;    
     getCurrentScore(): number;
     getPreviousScore(): number;
+    getPointValue(specialPoints: number): number;
 }

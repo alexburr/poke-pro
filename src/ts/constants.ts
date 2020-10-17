@@ -20,6 +20,7 @@ class Constants {
     durationPoke: number;
     // dimensionsWeapon: dimensions;
     fontScore: string;
+    fontScoreFloat: string;
     messageHit: string;
     messageMiss: string;
     ms60fps: number;
@@ -47,7 +48,8 @@ const _CONSTANTS: Constants = {
     coordsClickable: { x: 170, y: 240 },
     coordsFace: { x: 135, y: 200 },
     coordsFinger1: { x: 170, y: 440 },
-    coordsFinger2: { x: 170, y: 319 },
+    coordsFinger2: { x: 170, y: 440 },
+    //coordsFinger2: { x: 170, y: 319 }, // OLD
     coordsLeftEye: { x: 290, y: 285 },
     coordsRightEye: { x: 333, y: 285 },
     // coordsOuterCircle: { x: 320, y: 240 },
@@ -60,6 +62,7 @@ const _CONSTANTS: Constants = {
     durationDodge: 250,
     durationPoke: 250,
     fontScore: '24px sans-serif',
+    fontScoreFloat: '12px sans-serif',
     messageHit: "OUCH!",
     messageMiss: "miss",
     ms60fps: 16,
