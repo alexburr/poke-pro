@@ -10,6 +10,7 @@ Requires:
 To compile files:
  - All: `npm run build`
  - Typescript only: `npm run build-ts`
+ - *(to update built JS):* `npm run build-ts-js`
  - LESS only: `npm run build-less`
  - COPY HTML only: `npm run build-copy-html`
  - COPY JS only: `npm run build-copy-js`
