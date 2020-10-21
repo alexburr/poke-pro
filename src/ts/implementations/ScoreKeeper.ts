@@ -49,8 +49,8 @@ class ScoreKeeper implements IScoreKeeper {
     public clearScore(): void {
         this.canvasContext.font = _CONSTANTS.fontScore;
         const metrics: TextMetrics = this.canvasContext.measureText(this.previousScore.text);
-        this.canvasContext.fillStyle = _CONSTANTS.styleBackground;
-        this.canvasContext.fillRect(this.coords.x, this.coords.y - metrics.actualBoundingBoxAscent, metrics.width, metrics.actualBoundingBoxAscent);
+        //this.canvasContext.fillStyle = _CONSTANTS.styleBackground;
+        this.canvasContext.clearRect(this.coords.x, this.coords.y - metrics.actualBoundingBoxAscent, metrics.width, metrics.actualBoundingBoxAscent);
     }
 
     public getPointValue(specialPoints: number = 0): number {

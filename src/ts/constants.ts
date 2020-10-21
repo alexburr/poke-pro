@@ -10,8 +10,6 @@ class Constants {
     coordsFace: coords;
     coordsFinger1: coords;
     coordsFinger2: coords;
-    // coordsOuterCircle: coords;
-    // coordsMouth: coords;
     coordsScore: coords;
     debug: boolean;
     dimensionsClickable: dimensions;
@@ -25,15 +23,10 @@ class Constants {
     messageMiss: string;
     ms60fps: number;
     ms30fps: number;
-    //radiusEye: number;
-    //radiusOuterCircle: number;
-    //radiusMouth: number;
     styleBackground: string;
     styleDebugStroke: string;
-    //styleStroke: string;
     styleFill: string;
     styleText: string;
-    // styleHighlight: string;
     pointsPoke: number;
     //pointsWeaponPoke: number;
     textScore: string;
@@ -43,17 +36,14 @@ class Constants {
 }
 
 const _CONSTANTS: Constants = {
-    canvasHeight: 480,
+    canvasHeight: 273, //480, (diff 207)
     canvasWidth: 640,
-    coordsClickable: { x: 170, y: 240 },
-    coordsFace: { x: 135, y: 200 },
-    coordsFinger1: { x: 170, y: 440 },
-    coordsFinger2: { x: 170, y: 440 },
-    //coordsFinger2: { x: 170, y: 319 }, // OLD
-    coordsLeftEye: { x: 290, y: 285 },
-    coordsRightEye: { x: 333, y: 285 },
-    // coordsOuterCircle: { x: 320, y: 240 },
-    // coordsMouth: { x: 320, y: 240 },
+    coordsClickable: { x: 170, y: 50 }, //y: 240 },
+    coordsFace: { x: 135, y: 0 }, //200
+    coordsFinger1: { x: 170, y: 233 }, // 440 },
+    coordsFinger2: { x: 170, y: 233 }, // 440 },
+    coordsLeftEye: { x: 290, y: 85 }, //285 },
+    coordsRightEye: { x: 333, y: 85 }, //285 },
     coordsScore: { x: 10, y: 30 },
     debug: false,
     // dimensionsWeapon: { width: 50, height: 50 },
@@ -67,15 +57,10 @@ const _CONSTANTS: Constants = {
     messageMiss: "miss",
     ms60fps: 16,
     ms30fps: 33,
-    // radiusEye: 5,
-    // radiusOuterCircle: 50,
-    // radiusMouth: 35,
     styleBackground: 'rgb(0,0,0)',
     styleDebugStroke: 'rgb(255, 255, 0)',
-    // styleStroke: 'rgb(200, 200, 200)',
     styleFill: 'rgb(200, 0, 0)',
     styleText: 'rgb(200, 200, 0)',
-    // styleHighlight: 'rgb(200, 200, 200)',
     pointsPoke: 3,
     //pointsWeaponPoke: 10,
     textScore: 'SCORE:',

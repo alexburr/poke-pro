@@ -1,26 +1,32 @@
-﻿body { 
+﻿@width: 640px;
+@containerHeight: 480px;
+@height: ceil(@width/2.35); // Widescreen baby!
+
+body { 
     margin: 0;
     padding: 0;
     position: relative;
 }
 
 #container { 
+    background: rgb(33,33,33);
     bottom: 0;
-    height: 100vh;
+    height: @containerHeight;
     left: 0;
     position: absolute;
     right: 0;
     top: 0;
-    width: 100vw;
+    width: @width;
 }
 
 canvas { 
-    border: 1px solid black; 
+    height: @height;
     left: 0;
     position: absolute;
-    top: 0;
+    top: 100px;
+    width: @width;
 }
 
 #canvasFace {
-    background: black;
+    background: rgb(0,0,0);
 }
