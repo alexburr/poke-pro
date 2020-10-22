@@ -17,8 +17,10 @@ class Constants {
     durationDodge: number;
     durationPoke: number;
     // dimensionsWeapon: dimensions;
-    fontScore: string;
-    fontScoreFloat: string;
+    font: string;
+    fontSizeScore: string;
+    // fontScore: string;
+    // fontScoreFloat: string;
     messageHit: string;
     messageMiss: string;
     ms60fps: number;
@@ -51,8 +53,10 @@ const _CONSTANTS: Constants = {
     dimensionsEye: { width: 23, height: 10 },
     durationDodge: 250,
     durationPoke: 250,
-    fontScore: '24px sans-serif',
-    fontScoreFloat: '12px sans-serif',
+    font: 'Press Start 2P',
+    fontSizeScore: '18px',
+    // fontScore: '48px Press Start 2P',
+    // fontScoreFloat: '24px Press Start 2P',
     messageHit: "OUCH!",
     messageMiss: "miss",
     ms60fps: 16,
@@ -60,7 +64,7 @@ const _CONSTANTS: Constants = {
     styleBackground: 'rgb(0,0,0)',
     styleDebugStroke: 'rgb(255, 255, 0)',
     styleFill: 'rgb(200, 0, 0)',
-    styleText: 'rgb(200, 200, 0)',
+    styleText: 'rgb(255, 255, 255)',
     pointsPoke: 3,
     //pointsWeaponPoke: 10,
     textScore: 'SCORE:',

@@ -5,4 +5,5 @@ interface IScoreKeeper {
     getCurrentScore(): number;
     getPreviousScore(): number;
     getPointValue(specialPoints: number): number;
+    init(canvasContext: CanvasRenderingContext2D): void;
 }

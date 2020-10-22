@@ -21,9 +21,11 @@ class Face implements IFace {
     dimensionsEye: dimensions = _CONSTANTS.dimensionsEye;
     state: FaceState;
     image: HTMLImageElement = new Image();
+    audioManager: IAudioManager;
     
-    constructor(canvasContext: CanvasRenderingContext2D) {
+    constructor(canvasContext: CanvasRenderingContext2D, audioManager: IAudioManager) {
         this.canvasContext = canvasContext;
+        this.audioManager = audioManager;
         this.initDodgeArea();
         this.resetState();
         this.initImage();
@@ -67,9 +69,11 @@ class Face implements IFace {
         switch(faceClickResult) {
             case FaceClickResult.PokeLeft:
                 this.setState(FaceStateType.PokeLeft);
+                this.audioManager.playFaceSoundEffect(FaceStateType.PokeLeft);
                 break;
             case FaceClickResult.PokeRight:
                 this.setState(FaceStateType.PokeRight);
+                this.audioManager.playFaceSoundEffect(FaceStateType.PokeRight);
                 break;
             case FaceClickResult.DodgeLeft:
                 this.setState(FaceStateType.DodgeLeft);

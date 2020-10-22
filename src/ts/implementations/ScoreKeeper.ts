@@ -11,11 +11,9 @@ class ScoreKeeper implements IScoreKeeper {
     coords: coords = _CONSTANTS.coordsScore;
     pointsDefault: number = _CONSTANTS.pointsPoke;
 
-    constructor(canvasContext: CanvasRenderingContext2D) {
-        this.canvasContext = canvasContext;
+    constructor() {
         this.currentScore = { value: 0, text: `${_CONSTANTS.textScore} 0` };
         this.previousScore = { value: 0, text: `${_CONSTANTS.textScore} 0` };
-        this.displayScore();
     }
 
     public addToScore(hit: boolean, specialPoints: number = 0): number {
@@ -41,13 +39,13 @@ class ScoreKeeper implements IScoreKeeper {
 
     public displayScore(): void {
         this.clearScore();
-        this.canvasContext.font = _CONSTANTS.fontScore;
+        this.setFont();
         this.canvasContext.fillStyle = _CONSTANTS.styleText;
         this.canvasContext.fillText(this.currentScore.text, this.coords.x, this.coords.y);
     }
 
     public clearScore(): void {
-        this.canvasContext.font = _CONSTANTS.fontScore;
+        this.setFont();
         const metrics: TextMetrics = this.canvasContext.measureText(this.previousScore.text);
         //this.canvasContext.fillStyle = _CONSTANTS.styleBackground;
         this.canvasContext.clearRect(this.coords.x, this.coords.y - metrics.actualBoundingBoxAscent, metrics.width, metrics.actualBoundingBoxAscent);
@@ -55,5 +53,14 @@ class ScoreKeeper implements IScoreKeeper {
 
     public getPointValue(specialPoints: number = 0): number {
         return (specialPoints > 0) ? specialPoints : this.pointsDefault;
+    }
+
+    public init(canvasContext: CanvasRenderingContext2D): void {
+        this.canvasContext = canvasContext;
+        this.displayScore();
+    }
+
+    private setFont(): void {
+        this.canvasContext.font = `${_CONSTANTS.fontSizeScore} "${_CONSTANTS.font}"`;
     }
 }
