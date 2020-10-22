@@ -4,48 +4,61 @@
 
 class AudioManager implements IAudioManager {
 
-    loadedEffects: number = 0;
-    htmlAudioElements: HTMLAudioElement[] = [];
-    faceSoundEffects: FaceSoundEffect[] = [
-        { faceStateType: FaceStateType.PokeRight, src: "././sounds/ow8.wav" }
-    ];
+    audioSoundEffects: audioSoundEffect[] = [];
+    currentSound: HTMLAudioElement = null;
+    faceSounds: faceSound[] = _FACESOUNDS;
+    loadedSounds: number = 0;
 
     constructor() {
 
-        this.faceSoundEffects.forEach(faceSoundEffect => {
-            const htmlAudio = new Audio(faceSoundEffect.src);
+        this.faceSounds.forEach(faceSound => {
+            const htmlAudio: HTMLAudioElement = new Audio(faceSound.src);
             htmlAudio.onloadeddata = () => {
-                this.loadedEffects++;
+                this.loadedSounds++;
             }
-            this.htmlAudioElements.push(htmlAudio);
+            htmlAudio.onplaying = () => {
+                this.currentSound = htmlAudio;
+            }
+            htmlAudio.onended = () => {
+                this.clearSound();
+            }
+            const audioSoundEffect: audioSoundEffect = { htmlAudioElement: htmlAudio, faceStateType: faceSound.faceStateType };
+            this.audioSoundEffects.push(audioSoundEffect);
         });
     }
 
     public getAudioLoaded(): boolean {
-        return (this.loadedEffects == this.htmlAudioElements.length);
+        return (this.loadedSounds == this.audioSoundEffects.length);
     }
 
-    // public playAudio(): void {
-    //     if (this.isAudioLoaded) {
-    //         this.htmlaudio.play();
-    //     }
-    // }
+    public getCanPlay(): boolean {
+        return (this.currentSound.currentTime == 0 || this.currentSound == null);
+    }
 
     public playFaceSoundEffect(faceStateType: FaceStateType): void {
-        if (this.getAudioLoaded() && faceStateType == this.faceSoundEffects[0].faceStateType) {
-            this.htmlAudioElements[0].play();
+        if (!this.getAudioLoaded) { return; }
+
+        let audioSoundEffect: audioSoundEffect = this.audioSoundEffects.find(aSE => aSE.faceStateType === faceStateType);
+
+        if (audioSoundEffect != null) {
+            this.stopSound();
+            this.playSound(audioSoundEffect.htmlAudioElement);
         }
     }
-}
 
-class SoundEffect {
-    src: string;
-}
+    private clearSound(): void {
+        this.currentSound = null;
+    }
 
-class FaceSoundEffect extends SoundEffect {
-    faceStateType: FaceStateType;
-}
+    private stopSound(): void {
+        if (this.currentSound != null) { 
+            this.currentSound.pause(); 
+            this.currentSound.currentTime = 0;
+        }
+    }
 
-// const FaceSoundEffects: FaceSoundEffect[] = [
-//     { faceStateType: FaceStateType.PokeRight, src: "././sounds/ow8.wav"}
-// ]
+    private playSound(htmlAudioElement: HTMLAudioElement): void {
+        this.currentSound = htmlAudioElement;
+        this.currentSound.play();
+    }
+}

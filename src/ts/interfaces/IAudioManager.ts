@@ -1,5 +1,5 @@
 interface IAudioManager {
     getAudioLoaded(): boolean;
-    //playAudio(): void;
+    getCanPlay(): boolean;
     playFaceSoundEffect(faceStateType: FaceStateType): void;
 }

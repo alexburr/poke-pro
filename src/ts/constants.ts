@@ -93,3 +93,10 @@ const _FACESTATES: FaceState[] = [
     { stateType: FaceStateType.DodgeRight, duration: _CONSTANTS.durationDodge, src: [ _IMAGES.getImgSrcByName("srcFaceDodgeRight1") ]},    
     { stateType: FaceStateType.DodgeLeft, duration: _CONSTANTS.durationDodge, src: [ _IMAGES.getImgSrcByName("srcFaceDodgeLeft1") ]}
 ];
+
+const _FACESOUNDS: faceSound[] = [
+    { faceStateType: FaceStateType.PokeRight, src: "././sounds/ow8.wav" },
+    { faceStateType: FaceStateType.PokeLeft, src: "././sounds/ow5.wav" },
+    { faceStateType: FaceStateType.DodgeRight, src: "././sounds/eh.wav" },
+    { faceStateType: FaceStateType.DodgeLeft, src: "././sounds/eh.wav" }
+];

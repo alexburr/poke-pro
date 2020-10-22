@@ -69,11 +69,9 @@ class Face implements IFace {
         switch(faceClickResult) {
             case FaceClickResult.PokeLeft:
                 this.setState(FaceStateType.PokeLeft);
-                this.audioManager.playFaceSoundEffect(FaceStateType.PokeLeft);
                 break;
             case FaceClickResult.PokeRight:
                 this.setState(FaceStateType.PokeRight);
-                this.audioManager.playFaceSoundEffect(FaceStateType.PokeRight);
                 break;
             case FaceClickResult.DodgeLeft:
                 this.setState(FaceStateType.DodgeLeft);
@@ -94,6 +92,7 @@ class Face implements IFace {
         this.state = FaceState.getStateByType(_FACESTATES, faceStateType);
         this.clear();
         this.image = FaceState.getImageForState(this.state);
+        this.audioManager.playFaceSoundEffect(faceStateType);
         this.draw();
 
         // The "poked" state should be held for a brief moment and then reset
