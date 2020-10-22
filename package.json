@@ -10,6 +10,7 @@
     "build-copy-images": "cpx \"src/images/**/*.*\" \"public/images\"",
     "build-copy-js": "cpx \"src/js_temp/**/*.js\" \"public/js\"",
     "build-copy-sounds": "cpx \"src/sounds/**/*.*\" \"public/sounds\"",
+    "build-copy-all": "npm run build-copy-js && npm run build-copy-sounds && npm run build-copy-images && npm run build-copy-html",
     "build-ts": "tsc",
     "build-ts-js": "npm run build-ts && npm run build-copy-js"
   },
