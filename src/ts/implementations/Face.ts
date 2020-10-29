@@ -21,7 +21,7 @@ class Face implements IFace {
     dimensionsEye: dimensions = _CONSTANTS.dimensionsEye;
     state: FaceState;
     image: HTMLImageElement = new Image();
-    sound: faceSound;
+    sound: string;
     audioManager: IAudioManager;
     
     constructor(canvasContext: CanvasRenderingContext2D, audioManager: IAudioManager) {
@@ -92,11 +92,11 @@ class Face implements IFace {
 
         this.state = FaceState.getStateByType(_FACESTATES, faceStateType);
         this.clear();
-        this.image = FaceState.getImageForState(this.state);
-        this.sound = FaceState.getSoundForState(this.state);
-        //this.audioManager.playFaceSoundEffect(faceStateType);
+        const soundImagePair: SoundImagePair = FaceState.getSoundImageForState(this.state);
+        this.image = _IMAGES.getImgBySrc(soundImagePair.src);
+        this.sound = soundImagePair.sound;
         if (this.sound != null) { 
-            this.audioManager.playSoundEffect(this.sound.name); 
+            this.audioManager.playSoundEffect(this.sound); 
         }
         this.draw();
 

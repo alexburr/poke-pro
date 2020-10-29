@@ -86,37 +86,44 @@ const _FACESTATES: FaceState[] = [
     { 
         stateType: FaceStateType.Standard, 
         duration: 0, 
-        src: [ _IMAGES.getImgSrcByName("srcFaceStandard") ],
-        sounds: []
+        soundImages: [
+            { src:_IMAGES.getImgSrcByName("srcFaceStandard"), sound: null }
+        ]
     },
     { 
         stateType: FaceStateType.PokeRight, 
         duration: _CONSTANTS.durationPoke, 
-        src: [ _IMAGES.getImgSrcByName("srcFacePokeRight1"), _IMAGES.getImgSrcByName("srcFacePokeRight2") ],
-        sounds: ["ow1","ow8"]
+        soundImages: [
+            { src: _IMAGES.getImgSrcByName("srcFacePokeRight1"), sound: "ow8" },
+            { src: _IMAGES.getImgSrcByName("srcFacePokeRight2"), sound: "ow1" }
+        ]
     },
     { 
         stateType: FaceStateType.PokeLeft, 
         duration: _CONSTANTS.durationPoke, 
-        src: [ _IMAGES.getImgSrcByName("srcFacePokeLeft1"), _IMAGES.getImgSrcByName("srcFacePokeLeft2") ],
-        sounds: ["ow3","ow5"]
+        soundImages: [
+            { src: _IMAGES.getImgSrcByName("srcFacePokeLeft1"), sound: "ow5" },
+            { src: _IMAGES.getImgSrcByName("srcFacePokeLeft2"), sound: "ow3" }
+        ]
     },
     { 
         stateType: FaceStateType.DodgeRight, 
         duration: _CONSTANTS.durationDodge, 
-        src: [ _IMAGES.getImgSrcByName("srcFaceDodgeRight1") ],
-        sounds: ["eh"]
+        soundImages: [
+            { src: _IMAGES.getImgSrcByName("srcFaceDodgeRight1"), sound: "eh" }
+        ]
     },    
     { 
         stateType: FaceStateType.DodgeLeft, 
         duration: _CONSTANTS.durationDodge, 
-        src: [ _IMAGES.getImgSrcByName("srcFaceDodgeLeft1") ],
-        sounds: ["eh"]
+        soundImages: [
+            { src: _IMAGES.getImgSrcByName("srcFaceDodgeLeft1"), sound: "eh" }
+        ]
     }
 ];
 
 // TODO: This should just be a collection of sounds
-const _FACESOUNDS: faceSound[] = [
+const _SOUNDS: sound[] = [
     { name: "ow1", src: "././sounds/ow1.mp3" },
     { name: "ow3", src: "././sounds/ow3.mp3" },
     { name: "ow5", src: "././sounds/ow5.mp3" },

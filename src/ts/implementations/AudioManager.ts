@@ -6,13 +6,13 @@ class AudioManager implements IAudioManager {
 
     audioSoundEffects: audioSoundEffect[] = [];
     currentSound: HTMLAudioElement = null;
-    faceSounds: faceSound[] = _FACESOUNDS;
+    sounds: sound[] = _SOUNDS;
     loadedSounds: number = 0;
 
     constructor() {
 
-        this.faceSounds.forEach(faceSound => {
-            const htmlAudio: HTMLAudioElement = new Audio(faceSound.src);
+        this.sounds.forEach(sound => {
+            const htmlAudio: HTMLAudioElement = new Audio(sound.src);
             htmlAudio.onloadeddata = () => {
                 this.loadedSounds++;
             }
@@ -22,7 +22,7 @@ class AudioManager implements IAudioManager {
             htmlAudio.onended = () => {
                 this.clearSound();
             }
-            const audioSoundEffect: audioSoundEffect = { htmlAudioElement: htmlAudio, name: faceSound.name };//, faceStateType: faceSound.faceStateType };
+            const audioSoundEffect: audioSoundEffect = { htmlAudioElement: htmlAudio, name: sound.name };
             this.audioSoundEffects.push(audioSoundEffect);
         });
     }
@@ -34,17 +34,6 @@ class AudioManager implements IAudioManager {
     public getCanPlay(): boolean {
         return (this.currentSound.currentTime == 0 || this.currentSound == null);
     }
-
-    // public playFaceSoundEffect(faceStateType: FaceStateType): void {
-    //     if (!this.getAudioLoaded) { return; }
-
-    //     let audioSoundEffect: audioSoundEffect = this.audioSoundEffects.find(aSE => aSE.faceStateType === faceStateType);
-
-    //     if (audioSoundEffect != null) {
-    //         this.stopSound();
-    //         this.playSound(audioSoundEffect.htmlAudioElement);
-    //     }
-    // }
 
     public playSoundEffect(name: string): void {
         if (!this.getAudioLoaded) { return; }
