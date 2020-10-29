@@ -5,6 +5,7 @@
   "main": "index.html",
   "scripts": {
     "build": "npm run build-ts && npm run build-copy-js && npm run build-copy-sounds && npm run build-copy-images && npm run build-copy-html && npm run build-less",
+    "build-production": "npm run build-ts && npm run build-js-terser && npm run build-copy-js && npm run build-copy-sounds && npm run build-copy-images && npm run build-copy-html && npm run build-less",
     "build-less": "lessc src/less/styles.less public/css/styles.css",
     "build-copy-html": "cpx \"src/index.html\" \"public\"",
     "build-copy-images": "cpx \"src/images/**/*.*\" \"public/images\"",
@@ -12,7 +13,8 @@
     "build-copy-sounds": "cpx \"src/sounds/**/*.*\" \"public/sounds\"",
     "build-copy-all": "npm run build-copy-js && npm run build-copy-sounds && npm run build-copy-images && npm run build-copy-html",
     "build-ts": "tsc",
-    "build-ts-js": "npm run build-ts && npm run build-copy-js"
+    "build-ts-js": "npm run build-ts && npm run build-copy-js",
+    "build-js-terser": "terser \"src/js_temp/poke-pro.js\" --compress --mangle --output \"src/js_temp/poke-pro.js\""
   },
   "repository": {
     "type": "git",

@@ -60,5 +60,7 @@ typings/
 # Output of Typescript compiler, LESS transpiler & CPS
 public/js/
 public/css/
+public/sounds/
+public/images/
 public/
 src/js_temp
