@@ -21,6 +21,7 @@ class Face implements IFace {
     dimensionsEye: dimensions = _CONSTANTS.dimensionsEye;
     state: FaceState;
     image: HTMLImageElement = new Image();
+    sound: faceSound;
     audioManager: IAudioManager;
     
     constructor(canvasContext: CanvasRenderingContext2D, audioManager: IAudioManager) {
@@ -92,7 +93,11 @@ class Face implements IFace {
         this.state = FaceState.getStateByType(_FACESTATES, faceStateType);
         this.clear();
         this.image = FaceState.getImageForState(this.state);
-        this.audioManager.playFaceSoundEffect(faceStateType);
+        this.sound = FaceState.getSoundForState(this.state);
+        //this.audioManager.playFaceSoundEffect(faceStateType);
+        if (this.sound != null) { 
+            this.audioManager.playSoundEffect(this.sound.name); 
+        }
         this.draw();
 
         // The "poked" state should be held for a brief moment and then reset

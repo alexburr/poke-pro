@@ -1,14 +1,16 @@
 // THESE NEED CLEANING UP!
 
 class sound {
+    name: string;
     src: string;
 }
 
 class faceSound extends sound {
-    faceStateType: FaceStateType;
+    //faceStateType: FaceStateType;
 }
 
 class audioSoundEffect {
     htmlAudioElement: HTMLAudioElement;
-    faceStateType: FaceStateType;
+    //faceStateType: FaceStateType;
+    name: string;
 }

@@ -12,8 +12,8 @@ class ScoreKeeper implements IScoreKeeper {
     pointsDefault: number = _CONSTANTS.pointsPoke;
 
     constructor() {
-        this.currentScore = { value: 0, text: `${_CONSTANTS.textScore} 0` };
-        this.previousScore = { value: 0, text: `${_CONSTANTS.textScore} 0` };
+        this.currentScore = { value: 0, text: `${_CONSTANTS.textScore}0` };
+        this.previousScore = { value: 0, text: `${_CONSTANTS.textScore}0` };
     }
 
     public addToScore(hit: boolean, specialPoints: number = 0): number {
@@ -22,7 +22,7 @@ class ScoreKeeper implements IScoreKeeper {
         let points: number = hit ? this.getPointValue(specialPoints) : 0;
 
         this.currentScore.value += points;
-        this.currentScore.text = `${_CONSTANTS.textScore} ${this.currentScore.value}`;
+        this.currentScore.text = `${_CONSTANTS.textScore}${this.currentScore.value}`;
 
         if (_CONSTANTS.debug) { console.log(this.currentScore); }
 
@@ -47,7 +47,6 @@ class ScoreKeeper implements IScoreKeeper {
     public clearScore(): void {
         this.setFont();
         const metrics: TextMetrics = this.canvasContext.measureText(this.previousScore.text);
-        //this.canvasContext.fillStyle = _CONSTANTS.styleBackground;
         this.canvasContext.clearRect(this.coords.x, this.coords.y - metrics.actualBoundingBoxAscent, metrics.width, metrics.actualBoundingBoxAscent);
     }
 

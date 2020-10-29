@@ -22,7 +22,7 @@ class AudioManager implements IAudioManager {
             htmlAudio.onended = () => {
                 this.clearSound();
             }
-            const audioSoundEffect: audioSoundEffect = { htmlAudioElement: htmlAudio, faceStateType: faceSound.faceStateType };
+            const audioSoundEffect: audioSoundEffect = { htmlAudioElement: htmlAudio, name: faceSound.name };//, faceStateType: faceSound.faceStateType };
             this.audioSoundEffects.push(audioSoundEffect);
         });
     }
@@ -35,10 +35,21 @@ class AudioManager implements IAudioManager {
         return (this.currentSound.currentTime == 0 || this.currentSound == null);
     }
 
-    public playFaceSoundEffect(faceStateType: FaceStateType): void {
+    // public playFaceSoundEffect(faceStateType: FaceStateType): void {
+    //     if (!this.getAudioLoaded) { return; }
+
+    //     let audioSoundEffect: audioSoundEffect = this.audioSoundEffects.find(aSE => aSE.faceStateType === faceStateType);
+
+    //     if (audioSoundEffect != null) {
+    //         this.stopSound();
+    //         this.playSound(audioSoundEffect.htmlAudioElement);
+    //     }
+    // }
+
+    public playSoundEffect(name: string): void {
         if (!this.getAudioLoaded) { return; }
 
-        let audioSoundEffect: audioSoundEffect = this.audioSoundEffects.find(aSE => aSE.faceStateType === faceStateType);
+        let audioSoundEffect: audioSoundEffect = this.audioSoundEffects.find(aSE => aSE.name ===  name);
 
         if (audioSoundEffect != null) {
             this.stopSound();

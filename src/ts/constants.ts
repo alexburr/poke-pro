@@ -25,9 +25,7 @@ class Constants {
     messageMiss: string;
     ms60fps: number;
     ms30fps: number;
-    styleBackground: string;
     styleDebugStroke: string;
-    styleFill: string;
     styleText: string;
     pointsPoke: number;
     //pointsWeaponPoke: number;
@@ -61,9 +59,7 @@ const _CONSTANTS: Constants = {
     messageMiss: "miss",
     ms60fps: 16,
     ms30fps: 33,
-    styleBackground: 'rgb(0,0,0)',
     styleDebugStroke: 'rgb(255, 255, 0)',
-    styleFill: 'rgb(200, 0, 0)',
     styleText: 'rgb(255, 255, 255)',
     pointsPoke: 3,
     //pointsWeaponPoke: 10,
@@ -87,16 +83,43 @@ const _IMAGES: Images = new Images([
 ]);
 
 const _FACESTATES: FaceState[] = [
-    { stateType: FaceStateType.Standard, duration: 0, src: [ _IMAGES.getImgSrcByName("srcFaceStandard") ]},
-    { stateType: FaceStateType.PokeRight, duration: _CONSTANTS.durationPoke, src: [ _IMAGES.getImgSrcByName("srcFacePokeRight1"), _IMAGES.getImgSrcByName("srcFacePokeRight2") ]},
-    { stateType: FaceStateType.PokeLeft, duration: _CONSTANTS.durationPoke, src: [ _IMAGES.getImgSrcByName("srcFacePokeLeft1"), _IMAGES.getImgSrcByName("srcFacePokeLeft2") ]},
-    { stateType: FaceStateType.DodgeRight, duration: _CONSTANTS.durationDodge, src: [ _IMAGES.getImgSrcByName("srcFaceDodgeRight1") ]},    
-    { stateType: FaceStateType.DodgeLeft, duration: _CONSTANTS.durationDodge, src: [ _IMAGES.getImgSrcByName("srcFaceDodgeLeft1") ]}
+    { 
+        stateType: FaceStateType.Standard, 
+        duration: 0, 
+        src: [ _IMAGES.getImgSrcByName("srcFaceStandard") ],
+        sounds: []
+    },
+    { 
+        stateType: FaceStateType.PokeRight, 
+        duration: _CONSTANTS.durationPoke, 
+        src: [ _IMAGES.getImgSrcByName("srcFacePokeRight1"), _IMAGES.getImgSrcByName("srcFacePokeRight2") ],
+        sounds: ["ow1","ow8"]
+    },
+    { 
+        stateType: FaceStateType.PokeLeft, 
+        duration: _CONSTANTS.durationPoke, 
+        src: [ _IMAGES.getImgSrcByName("srcFacePokeLeft1"), _IMAGES.getImgSrcByName("srcFacePokeLeft2") ],
+        sounds: ["ow3","ow5"]
+    },
+    { 
+        stateType: FaceStateType.DodgeRight, 
+        duration: _CONSTANTS.durationDodge, 
+        src: [ _IMAGES.getImgSrcByName("srcFaceDodgeRight1") ],
+        sounds: ["eh"]
+    },    
+    { 
+        stateType: FaceStateType.DodgeLeft, 
+        duration: _CONSTANTS.durationDodge, 
+        src: [ _IMAGES.getImgSrcByName("srcFaceDodgeLeft1") ],
+        sounds: ["eh"]
+    }
 ];
 
+// TODO: This should just be a collection of sounds
 const _FACESOUNDS: faceSound[] = [
-    { faceStateType: FaceStateType.PokeRight, src: "././sounds/ow8.wav" },
-    { faceStateType: FaceStateType.PokeLeft, src: "././sounds/ow5.wav" },
-    { faceStateType: FaceStateType.DodgeRight, src: "././sounds/eh.wav" },
-    { faceStateType: FaceStateType.DodgeLeft, src: "././sounds/eh.wav" }
+    { name: "ow1", src: "././sounds/ow1.mp3" },
+    { name: "ow3", src: "././sounds/ow3.mp3" },
+    { name: "ow5", src: "././sounds/ow5.mp3" },
+    { name: "ow8", src: "././sounds/ow8.mp3" },
+    { name: "eh", src: "././sounds/eh.mp3" }
 ];

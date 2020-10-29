@@ -15,6 +15,7 @@ class GameCanvasBuilder implements IGameCanvasBuilder {
 
     constructor(containerId: string) {
         this.canvasContainer = document.getElementById(containerId);
+
         this.canvasFace = document.createElement("canvas");
         this.canvasFinger = document.createElement("canvas");
         this.canvasWeapons = document.createElement("canvas");
