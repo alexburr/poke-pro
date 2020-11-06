@@ -5,7 +5,7 @@
   "main": "index.html",
   "scripts": {
     "build": "npm run build-ts && npm run build-copy-js && npm run build-copy-sounds && npm run build-copy-images && npm run build-copy-html && npm run build-less",
-    "build-production": "npm run build-ts && npm run build-js-terser && npm run build-copy-js && npm run build-copy-sounds && npm run build-copy-images && npm run build-copy-html && npm run build-less",
+    "build-release": "npm run build-ts && npm run build-js-terser && npm run build-copy-js && npm run build-copy-sounds && npm run build-copy-images && npm run build-copy-html && npm run build-less",
     "build-less": "lessc src/less/styles.less public/css/styles.css",
     "build-copy-html": "cpx \"src/index.html\" \"public\"",
     "build-copy-images": "cpx \"src/images/**/*.*\" \"public/images\"",

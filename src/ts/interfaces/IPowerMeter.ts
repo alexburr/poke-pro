@@ -1,0 +1,3 @@
+interface IPowerMeter {
+    init(): void;
+}

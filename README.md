@@ -10,7 +10,7 @@ Requires:
 
 To compile:
  - All: `npm run build`
- - All with minified JS: `npm run build-production`
+ - All with minified JS: `npm run build-release`
 
  To compile files:
  - Typescript only: `npm run build-ts`

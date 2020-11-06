@@ -44,7 +44,7 @@ const _CONSTANTS: Constants = {
     coordsFinger2: { x: 170, y: 233 }, // 440 },
     coordsLeftEye: { x: 290, y: 85 }, //285 },
     coordsRightEye: { x: 333, y: 85 }, //285 },
-    coordsScore: { x: 10, y: 30 },
+    coordsScore: { x: 610, y: 30 }, // { x: 10, y: 30 },
     debug: false,
     // dimensionsWeapon: { width: 50, height: 50 },
     dimensionsClickable: { width: 300, height: 200 },
@@ -63,7 +63,7 @@ const _CONSTANTS: Constants = {
     styleText: 'rgb(255, 255, 255)',
     pointsPoke: 3,
     //pointsWeaponPoke: 10,
-    textScore: 'SCORE:',
+    textScore: '', //'SCORE:',
     timeoutWeaponAppear: 3000,
     timeoutWeaponDisappear: 3000,
     timeoutWeaponHighlight: 50
@@ -122,11 +122,11 @@ const _FACESTATES: FaceState[] = [
     }
 ];
 
-// TODO: This should just be a collection of sounds
 const _SOUNDS: sound[] = [
     { name: "ow1", src: "././sounds/ow1.mp3" },
     { name: "ow3", src: "././sounds/ow3.mp3" },
     { name: "ow5", src: "././sounds/ow5.mp3" },
     { name: "ow8", src: "././sounds/ow8.mp3" },
-    { name: "eh", src: "././sounds/eh.mp3" }
+    { name: "eh", src: "././sounds/eh.mp3" },
+    { name: "fill", src: "././sounds/fill.mp3 "}
 ];

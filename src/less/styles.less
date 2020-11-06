@@ -33,3 +33,24 @@ canvas {
 #canvasFace {
     background: rgb(32,32,32);
 }
+
+#powerBox {
+    border: 2px solid rgb(255,255,255);
+    height: 20px;
+    left: 10px;
+    position: absolute;
+    top: 110px;
+    width: 125px;
+}
+
+#powerBar {
+    background-color: rgb(50,205,50);
+    height: 100%;
+    transition: width 1s;
+    transition-timing-function: steps(25, end);
+    width: 0%;
+
+    &.full {
+        width: 100%;
+    }
+}
