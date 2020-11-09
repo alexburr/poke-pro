@@ -11,43 +11,27 @@ class GameCanvasBuilder implements IGameCanvasBuilder {
     canvasWeapons: HTMLCanvasElement;
     canvasScore: HTMLCanvasElement;
     canvasClick: HTMLCanvasElement;
-    canvasPointFloater: HTMLCanvasElement;
+    //canvasPointFloater: HTMLCanvasElement;
+    canvasStartup: HTMLCanvasElement;
 
     constructor(containerId: string) {
         this.canvasContainer = document.getElementById(containerId);
+        this.canvasFace = this.buildCanvas("canvasFace");
+        this.canvasFinger = this.buildCanvas("canvasFinger");
+        this.canvasWeapons = this.buildCanvas("canvasWeapons"); 
+        this.canvasScore = this.buildCanvas("canvasScore");
+        this.canvasClick = this.buildCanvas("canvasClick"); 
+        //this.canvasPointFloater = this.buildCanvas("canvasPointFloater"); 
+        this.canvasStartup = this.buildCanvas("canvasStartup"); 
+    }
 
-        this.canvasFace = document.createElement("canvas");
-        this.canvasFinger = document.createElement("canvas");
-        this.canvasWeapons = document.createElement("canvas");
-        this.canvasScore = document.createElement("canvas");
-        this.canvasClick = document.createElement("canvas");
-        this.canvasPointFloater = document.createElement("canvas");
-        
-        this.canvasFace.id = "canvasFace";
-        this.canvasFace.width = _CONSTANTS.canvasWidth;
-        this.canvasFace.height = _CONSTANTS.canvasHeight;
-        this.canvasFinger.id = "canvasFinger";
-        this.canvasFinger.width = _CONSTANTS.canvasWidth;
-        this.canvasFinger.height = _CONSTANTS.canvasHeight;
-        this.canvasWeapons.id = "canvasWeapons";
-        this.canvasWeapons.width = _CONSTANTS.canvasWidth;
-        this.canvasWeapons.height = _CONSTANTS.canvasHeight;
-        this.canvasScore.id = "canvasScore";
-        this.canvasScore.width = _CONSTANTS.canvasWidth;
-        this.canvasScore.height = _CONSTANTS.canvasHeight;
-        this.canvasClick.id = "canvasClick";
-        this.canvasClick.width = _CONSTANTS.canvasWidth;
-        this.canvasClick.height = _CONSTANTS.canvasHeight;
-        this.canvasPointFloater.id = "canvasPointFloater";
-        this.canvasPointFloater.width = _CONSTANTS.canvasWidth;
-        this.canvasPointFloater.height = _CONSTANTS.canvasHeight;
-
-        this.canvasContainer.appendChild(this.canvasFace);
-        this.canvasContainer.appendChild(this.canvasFinger);
-        this.canvasContainer.appendChild(this.canvasWeapons);
-        this.canvasContainer.appendChild(this.canvasScore);
-        this.canvasContainer.appendChild(this.canvasPointFloater);
-        this.canvasContainer.appendChild(this.canvasClick);
+    private buildCanvas(canvasId: string): HTMLCanvasElement {
+        const canvas: HTMLCanvasElement = document.createElement("canvas");
+        canvas.id = canvasId;
+        canvas.width = _CONSTANTS.canvasWidth;
+        canvas.height = _CONSTANTS.canvasHeight;
+        this.canvasContainer.appendChild(canvas);
+        return canvas;
     }
 
     public buildCanvasCollection(): canvasCollection {
@@ -57,7 +41,8 @@ class GameCanvasBuilder implements IGameCanvasBuilder {
             canvasWeapons: new GameCanvas(this.canvasWeapons.id),
             canvasScore: new GameCanvas(this.canvasScore.id),
             canvasClick: new GameCanvas(this.canvasClick.id),
-            canvasPointFloater: new GameCanvas(this.canvasPointFloater.id)
+            //canvasPointFloater: new GameCanvas(this.canvasPointFloater.id),
+            canvasStartup: new GameCanvas(this.canvasStartup.id)
         };
         return {
             canvasFace: { canvas: _gameGanvasCollection.canvasFace.getCanvas(), context: _gameGanvasCollection.canvasFace.getContext() },
@@ -65,7 +50,8 @@ class GameCanvasBuilder implements IGameCanvasBuilder {
             canvasWeapons: { canvas: _gameGanvasCollection.canvasWeapons.getCanvas(), context: _gameGanvasCollection.canvasWeapons.getContext() },
             canvasScore: { canvas: _gameGanvasCollection.canvasScore.getCanvas(), context: _gameGanvasCollection.canvasScore.getContext() },
             canvasClick: { canvas: _gameGanvasCollection.canvasClick.getCanvas(), context: _gameGanvasCollection.canvasClick.getContext() },
-            canvasPointFloater: { canvas: _gameGanvasCollection.canvasPointFloater.getCanvas(), context: _gameGanvasCollection.canvasPointFloater.getContext() }
+            //canvasPointFloater: { canvas: _gameGanvasCollection.canvasPointFloater.getCanvas(), context: _gameGanvasCollection.canvasPointFloater.getContext() },
+            canvasStartup: { canvas: _gameGanvasCollection.canvasStartup.getCanvas(), context: _gameGanvasCollection.canvasStartup.getContext() }
         };
     }
 }

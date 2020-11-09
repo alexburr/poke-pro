@@ -13,6 +13,7 @@ class PowerMeter implements IPowerMeter {
         this.powerMeterBox = document.createElement("div");
         this.powerMeterBar = document.createElement("div");    
         this.powerMeterBox.id = "powerBox";
+        this.powerMeterBox.classList.add("hidden");
         this.powerMeterBar.id = "powerBar";
         this.powerMeterBox.appendChild(this.powerMeterBar);
         this.container.appendChild(this.powerMeterBox);
@@ -21,7 +22,8 @@ class PowerMeter implements IPowerMeter {
     }
 
     public init(): void {
-        // this.audio.play(); // disabled since Chrome does not allow autoplay without click
+        this.powerMeterBox.classList.remove("hidden");
+        this.audio.play(); 
         this.powerMeterBar.classList.add("full");
     }
 }

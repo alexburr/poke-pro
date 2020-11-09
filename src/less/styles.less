@@ -34,6 +34,10 @@ canvas {
     background: rgb(32,32,32);
 }
 
+#canvasStartup {
+    background: rgb(32,32,32);
+}
+
 #powerBox {
     border: 2px solid rgb(255,255,255);
     height: 20px;
@@ -41,12 +45,16 @@ canvas {
     position: absolute;
     top: 110px;
     width: 125px;
+
+    &.hidden { 
+        visibility: hidden;
+    }
 }
 
 #powerBar {
     background-color: rgb(50,205,50);
     height: 100%;
-    transition: width 1s;
+    transition: width 1.3s;
     transition-timing-function: steps(25, end);
     width: 0%;
 

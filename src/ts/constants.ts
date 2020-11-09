@@ -30,6 +30,7 @@ class Constants {
     pointsPoke: number;
     //pointsWeaponPoke: number;
     textScore: string;
+    textStartup: string;
     timeoutWeaponAppear: number;
     timeoutWeaponDisappear: number;
     timeoutWeaponHighlight: number;
@@ -64,6 +65,7 @@ const _CONSTANTS: Constants = {
     pointsPoke: 3,
     //pointsWeaponPoke: 10,
     textScore: '', //'SCORE:',
+    textStartup: 'CLICK TO BEGIN',
     timeoutWeaponAppear: 3000,
     timeoutWeaponDisappear: 3000,
     timeoutWeaponHighlight: 50

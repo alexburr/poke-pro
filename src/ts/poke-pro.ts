@@ -2,8 +2,10 @@
 /// <reference path="models/coords.ts" />
 /// <reference path="models/canvasCollection.ts" />
 /// <reference path="Interfaces/IClickWatcher.ts" />
-/// <reference path="Interfaces/IGameCanvas.ts" />
 /// <reference path="Implementations/ClickWatcher.ts" />
+/// <reference path="Interfaces/IStartup.ts" />
+/// <reference path="Implementations/Startup.ts" />
+/// <reference path="Interfaces/IGameCanvas.ts" />
 /// <reference path="Implementations/GameCanvas.ts" />
 /// <reference path="Implementations/GameCanvasBuilder.ts" />
 /// <reference path="Interfaces/IScoreKeeper.ts" />
@@ -26,11 +28,12 @@ const _gameContainerId: string = "container";
 const _canvasCollection: canvasCollection = new GameCanvasBuilder(_gameContainerId).buildCanvasCollection();
 const _audioManager: IAudioManager = new AudioManager();
 const _clickWatcher: IClickWatcher = new ClickWatcher(_canvasCollection.canvasClick.canvas);
-const _pointFloater: IPointFloater = new PointFloater(_canvasCollection.canvasPointFloater.context);
+const _startUp: IStartup = new Startup(_canvasCollection.canvasStartup, _gameContainerId);
+//const _pointFloater: IPointFloater = new PointFloater(_canvasCollection.canvasPointFloater.context);
 const _scoreKeeper: IScoreKeeper = new ScoreKeeper();
 const _face: IFace = new Face(_canvasCollection.canvasFace.context, _audioManager);
 const _finger: IFinger = new Finger(_canvasCollection.canvasFinger.context);
-const _clickHandler: IClickHandler = new ClickHandler(_face, _finger, _pointFloater, _scoreKeeper);
+const _clickHandler: IClickHandler = new ClickHandler(_face, _finger, _scoreKeeper); //_pointFloater);
 const _powerMeter: IPowerMeter = new PowerMeter(_gameContainerId);
 const _pokeAnimationTimeout: number = _finger.getAnimationTimeout();
 
@@ -40,10 +43,16 @@ window.onload = () => {
     WebFont.load({
         google: { families: [_CONSTANTS.font] },
         active: () => { 
-            _scoreKeeper.init(_canvasCollection.canvasScore.context);
-            _powerMeter.init();
+            _startUp.showStartupText();
+            _startUp.waitForClick(this.handleStartupClick);
         }
     });
+};
+
+function handleStartupClick(): void {
+    //_startUp.close();
+    _scoreKeeper.init(_canvasCollection.canvasScore.context);
+    _powerMeter.init();
 
     if (_CONSTANTS.debug) {
         this.showClickable();
@@ -51,25 +60,10 @@ window.onload = () => {
 
     _finger.draw();
     _clickWatcher.watchClicks(this.handleClick);
-};
+}
 
 function handleClick(clickCoords: coords): void {
     _clickHandler.handleClick(clickCoords);
-
-    // let isClickOnWeapon: boolean = _weaponManager.isCoordsInWeapon(clickCoords);
-    
-    // if (isClickInEye) {
-    //     // TEMP: Randomly pick an eye to gouge
-    //     _face.setRandomState();
-    //     //this.updateScore(getSpecialPoints());
-    //     //_weaponManager.attachWeapon(false);
-    // }
-    // else if (isClickOnWeapon) {
-    //     _weaponManager.attachWeapon(true);
-    // }
-    // else {
-    //     _weaponManager.attachWeapon(false);
-    // }
 }
 
 function showClickable() {
@@ -79,17 +73,3 @@ function showClickable() {
     context.rect(_CONSTANTS.coordsClickable.x, _CONSTANTS.coordsClickable.y, _CONSTANTS.dimensionsClickable.width, _CONSTANTS.dimensionsClickable.height);
     context.stroke();
 }
-
-// function updateScore(specialPoints: number = 0): void {
-//     _scoreKeeper.addToScore(true, specialPoints);
-//     _scoreKeeper.displayScore();
-// } 
-
-// function drawObjects(): void {
-//     //_face.draw();
-//     // _weaponManager.activate();
-// }
-
-// function getSpecialPoints(): number {
-//     return (_weaponManager.getIsWeaponAttached()) ? CONSTANTS.pointsWeaponPoke : CONSTANTS.pointsPoke;
-// }
