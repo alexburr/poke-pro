@@ -52,8 +52,6 @@ class ScoreKeeper implements IScoreKeeper {
     public clearScore(): void {
         this.setFont();
         const metrics: TextMetrics = this.canvasContext.measureText(this.previousScore.text);
-        console.log(this.coords.x, this.coords.y - metrics.actualBoundingBoxAscent, metrics.width, metrics.actualBoundingBoxAscent);
-        //this.canvasContext.clearRect(this.coords.x, this.coords.y - metrics.actualBoundingBoxAscent, metrics.width, metrics.actualBoundingBoxAscent);
         this.canvasContext.clearRect(this.coords.x - metrics.width, this.coords.y - metrics.actualBoundingBoxAscent, metrics.width, metrics.actualBoundingBoxAscent);
     }
 
