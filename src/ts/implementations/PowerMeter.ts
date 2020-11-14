@@ -18,7 +18,6 @@ class PowerMeter implements IPowerMeter {
         this.powerMeterBox.appendChild(this.powerMeterBar);
         this.container.appendChild(this.powerMeterBox);
         this.audio = new Audio(_SOUNDS[5].src);
-        this.audio.autoplay = true;
     }
 
     public init(): void {
