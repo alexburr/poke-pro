@@ -4,7 +4,8 @@
 
 body { 
     background: rgb(64,64,64);
-    font-family: 12px 'Press Start 2P';
+    font-family: 'Press Start 2P';
+    font-size: 12px;
     margin: 0;
     padding: 0;
     position: relative;
@@ -60,6 +61,16 @@ canvas {
     transition: width 1.3s;
     transition-timing-function: steps(25, end);
     width: 0%;
+
+    &:after {
+        color: rgb(255,255,255);
+        content: "POWER";
+        font-family: 'Press Start 2P';
+        font-size: 12px;
+        line-height: 20px;
+        padding: 0 6px;
+        text-shadow: 1px 1px 0 rgb(0,0,0);
+    }
 
     &.full {
         width: 100%;

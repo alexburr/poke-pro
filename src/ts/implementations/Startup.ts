@@ -27,7 +27,7 @@ class Startup implements IStartup {
     public playMusic(): void {
         this.music = sound.getSoundByName(_SOUNDS, "music");
         const htmlAudio: HTMLAudioElement = new Audio(this.music.src);
-        htmlAudio.volume = 0.18;
+        htmlAudio.volume = 0.15;
         htmlAudio.loop = true;
         setTimeout(() => {
             
