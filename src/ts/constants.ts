@@ -130,5 +130,6 @@ const _SOUNDS: sound[] = [
     { name: "ow5", src: "././sounds/ow5.mp3" },
     { name: "ow8", src: "././sounds/ow8.mp3" },
     { name: "eh", src: "././sounds/eh.mp3" },
-    { name: "fill", src: "././sounds/fill.mp3 "}
+    { name: "fill", src: "././sounds/fill.mp3 "},
+    { name: "music", src: "././sounds/music.mp3" }
 ];

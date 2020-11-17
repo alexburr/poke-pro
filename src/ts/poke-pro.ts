@@ -50,7 +50,6 @@ window.onload = () => {
 };
 
 function handleStartupClick(): void {
-    //_startUp.close();
     _scoreKeeper.init(_canvasCollection.canvasScore.context);
     _powerMeter.init();
 
