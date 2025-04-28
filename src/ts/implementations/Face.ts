@@ -149,13 +149,13 @@ class Face implements IFace {
     }
 
     private showDebug(): void {
-        this.canvasContext.lineWidth = 1;
-        this.canvasContext.strokeStyle = _CONSTANTS.styleDebugStroke;
+        this.canvasContext.lineWidth = _CONSTANTS.styleDebugStrokeWidth;
+        this.canvasContext.strokeStyle = _CONSTANTS.styleDebugStroke1;
         this.canvasContext.strokeRect(this.coordsLeftEye.x, this.coordsLeftEye.y, this.dimensionsEye.width, this.dimensionsEye.height);
         this.canvasContext.strokeRect(this.coordsRightEye.x, this.coordsRightEye.y, this.dimensionsEye.width, this.dimensionsEye.height);
-        this.canvasContext.strokeStyle = "rgb(255,0,0)";
+        this.canvasContext.strokeStyle = _CONSTANTS.styleDebugStroke2;
         this.canvasContext.strokeRect(this.coordsLeftDodge.x, this.coordsLeftDodge.y, this.dimensionsDodge.width, this.dimensionsDodge.height);
-        this.canvasContext.strokeStyle = "rgb(0,0,255)";
+        this.canvasContext.strokeStyle =  _CONSTANTS.styleDebugStroke3;
         this.canvasContext.strokeRect(this.coordsRightDodge.x, this.coordsRightDodge.y, this.dimensionsDodge.width, this.dimensionsDodge.height);
         console.log(this.state);
     }
