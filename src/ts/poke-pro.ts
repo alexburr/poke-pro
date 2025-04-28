@@ -67,8 +67,8 @@ function handleClick(clickCoords: coords): void {
 
 function showClickable() {
     let context = _canvasCollection.canvasClick.context;
-    context.lineWidth = 1;
-    context.strokeStyle = _CONSTANTS.styleDebugStroke;
+    context.lineWidth = _CONSTANTS.styleDebugStrokeWidth;
+    context.strokeStyle = _CONSTANTS.styleDebugStroke1;
     context.rect(_CONSTANTS.coordsClickable.x, _CONSTANTS.coordsClickable.y, _CONSTANTS.dimensionsClickable.width, _CONSTANTS.dimensionsClickable.height);
     context.stroke();
 }
