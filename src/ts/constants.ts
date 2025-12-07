@@ -18,7 +18,7 @@ class Constants {
     static durationDodge: number = 250;
     static durationPoke: number = 250;
     static font: string = 'Press Start 2P';
-    static fontSizeStatus: string = '9px';
+    static fontSizeStatus: string = '6px';
     static fontSizeScore: string = '18px';
     static imagesPath: string = './images';
     static messageHit: string = "OUCH!";
@@ -35,6 +35,33 @@ class Constants {
     static styleText: string = 'rgb(255, 255, 255)';
     static textScore: string = '';
     static textStartup: string = 'CLICK TO BEGIN';
+    static textStatus: string[] = [
+        "INITIALIZING FINGER MATRIX...DONE",
+        "LEFT EYEBALL CHECK...NOMINAL",
+        "RIGHT EYEBALL CHECK...NOMINAL",
+        "DODGE DIAGNOSTICS",
+        "    LEFT DODGE OK",
+        "    RIGHT DODGE OK",
+        "    DUCK DISABLED",
+        "SILLY SOUNDS",
+        "    OOF OK",
+        "    OUCH OK",
+        "    YELP OK",
+        "    HOLLER OK",
+        "    GIGGLE DISABLED",
+        "WEAPONS CHECK...ALL WEAPONS ACCOUNTED FOR",
+        "EXECUTING HYDRA MECHANISM...SUCCESS",
+        "POWER METER STATUS CHECK...ENERGY AT MAXIMUM",
+        "POKE BACK FEATURE DISABLED",
+        "POKEX EXTENSIONS INTIALIZING...",
+        "    POKEX.POKEEYE",
+        "    POKEX.DODGE",
+        "    POKEX.RETRIEVEWEAPON",
+        "    POKEX.STATS",
+        "POKEX EXTENSIONS DEPLOYED",
+        "ALEX RETRIEVAL UNDERWAY...RETRIEVAL SUCCESSFUL",
+        "ENTERING LEVEL 1"
+    ];
     static timeoutWeaponAppear: number = 3000;
     static timeoutWeaponDisappear: number = 3000;
     static timeoutWeaponHighlight: number = 50;

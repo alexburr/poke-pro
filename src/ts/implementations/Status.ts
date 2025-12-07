@@ -2,6 +2,7 @@ class Status implements IStatus {
     canvas: HTMLCanvasElement;
     canvasContext: CanvasRenderingContext2D;
     containerId: string;
+    text: string[] = Constants.textStatus;
     text1: string = "INITIALIZING FINGER MATRIX...DONE";
     text2: string = "LEFT EYEBALL CHECK...NOMINAL";
     text3: string = "RIGHT EYEBALL CHECK...NOMINAL";
@@ -15,7 +16,7 @@ class Status implements IStatus {
     text11: string = "    YELP OK";
     text12: string = "    HOLLER OK";
     text13: string = "    GIGGLE DISABLED";
-    textCoords: coords = { x: 8, y: 0 };
+    textCoords: coords = { x: 5, y: 0 };
     textMetrics: TextMetrics;
 
     constructor(canvasPair: canvasContextPair, containerId: string) {
@@ -24,27 +25,26 @@ class Status implements IStatus {
         this.containerId = containerId;
     }
 
-    public showStatus(callback: () => any): void {
-        
+    public showStatus(callback: () => any): void {        
         this.canvasContext.font = `${Constants.fontSizeStatus} "${Constants.font}"`;
         this.canvasContext.textAlign = "left";
         this.canvasContext.fillStyle = Constants.styleText;
-        this.displayTextRow(this.text1);
+        var baseTimeout: number = 50;
+        var timeout: number = 0;
 
-        // THIS SUCKS, DO NOT DO THIS
-        setTimeout(() => this.displayTextRow(this.text2), 250);
-        setTimeout(() => this.displayTextRow(this.text3), 500);
-        setTimeout(() => this.displayTextRow(this.text4), 750);
-        setTimeout(() => this.displayTextRow(this.text5), 1000);
-        setTimeout(() => this.displayTextRow(this.text6), 1250);
-        setTimeout(() => this.displayTextRow(this.text7), 1500);
-        setTimeout(() => this.displayTextRow(this.text8), 1700);
-        setTimeout(() => this.displayTextRow(this.text9), 2000);
-        setTimeout(() => this.displayTextRow(this.text10), 2250);
-        setTimeout(() => this.displayTextRow(this.text11), 2500);
-        setTimeout(() => this.displayTextRow(this.text12), 2750);
-        setTimeout(() => this.displayTextRow(this.text13), 3000);
-        setTimeout(() => callback(), 3250);
+        for (let i = 0; i < this.text.length; i++) {
+
+            setTimeout(() => {
+                var text: string = this.text[i]
+                timeout = baseTimeout * (i + 1);
+                this.displayTextRow(text);
+
+                if (i == this.text.length - 1) {
+                    setTimeout(() => callback(), baseTimeout * 4);
+                }
+
+            }, 250 * (i + 1));
+        }
     }
 
     private displayTextRow(text: string): void {
