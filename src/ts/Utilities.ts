@@ -1,9 +1,4 @@
 abstract class Utilities {
-    // This might not work so good.
-    // public static getRandomInt(max): number {
-    //     return Math.floor(Math.random() * Math.floor(max));
-    // }
-
     public static randomInteger(min, max) {
         return Math.floor(Math.random() * (max - min + 1)) + min;
     }

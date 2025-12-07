@@ -11,17 +11,17 @@ class Face implements IFace {
 
     canClick: boolean = true;
     canvasContext: CanvasRenderingContext2D;
-    coords: coords = _CONSTANTS.coordsFace;
+    coords: coords = Constants.coordsFace;
     coordsLeftDodge: coords;
     coordsRightDodge: coords;
-    coordsLeftEye: coords = _CONSTANTS.coordsLeftEye;
-    coordsRightEye: coords = _CONSTANTS.coordsRightEye;
+    coordsLeftEye: coords = Constants.coordsLeftEye;
+    coordsRightEye: coords = Constants.coordsRightEye;
     defaultFaceStateType: FaceStateType = FaceStateType.Standard;
     dimensionsDodge: dimensions;
-    dimensionsEye: dimensions = _CONSTANTS.dimensionsEye;
+    dimensionsEye: dimensions = Constants.dimensionsEye;
     state: FaceState;
     image: HTMLImageElement = new Image();
-    sound: string;
+    sound: sound;
     audioManager: IAudioManager;
     
     constructor(canvasContext: CanvasRenderingContext2D, audioManager: IAudioManager) {
@@ -38,7 +38,7 @@ class Face implements IFace {
 
     public draw(): void {
         this.canvasContext.drawImage(this.image, this.coords.x, this.coords.y);
-        if (_CONSTANTS.debug) { this.showDebug() };
+        if (Constants.debug) { this.showDebug() };
     }
 
     public getState(): FaceState {
@@ -93,10 +93,9 @@ class Face implements IFace {
         this.state = FaceState.getStateByType(_FACESTATES, faceStateType);
         this.clear();
         const soundImagePair: SoundImagePair = FaceState.getSoundImageForState(this.state);
-        this.image = _IMAGES.getImgBySrc(soundImagePair.src);
-        this.sound = soundImagePair.sound;
-        if (this.sound != null) { 
-            this.audioManager.playSoundEffect(this.sound); 
+        this.image = soundImagePair.image.image;
+        if (soundImagePair.sound != null) { 
+            this.audioManager.playSoundEffect(soundImagePair.sound);
         }
         this.draw();
 
@@ -124,6 +123,10 @@ class Face implements IFace {
         this.coordsLeftDodge = { x: this.coordsLeftEye.x - 70, y: this.coordsLeftEye.y - 30 };
         this.coordsRightDodge = { x: this.coordsRightEye.x - 10, y: this.coordsRightEye.y - 30 };
         this.dimensionsDodge = { width: this.dimensionsEye.width + 80, height: this.dimensionsEye.height + 130 };
+
+        if (Constants.debug) { console.log('this.coordsLeftDodge', this.coordsLeftDodge); }
+        if (Constants.debug) { console.log('this.coordsRightDodge', this.coordsRightDodge); }
+        if (Constants.debug) { console.log('this.dimensionsDodge', this.dimensionsDodge); }
     }
 
     private initImage(): void {
@@ -149,13 +152,13 @@ class Face implements IFace {
     }
 
     private showDebug(): void {
-        this.canvasContext.lineWidth = _CONSTANTS.styleDebugStrokeWidth;
-        this.canvasContext.strokeStyle = _CONSTANTS.styleDebugStroke1;
+        this.canvasContext.lineWidth = Constants.styleDebugStrokeWidth;
+        this.canvasContext.strokeStyle = Constants.styleDebugStroke1;
         this.canvasContext.strokeRect(this.coordsLeftEye.x, this.coordsLeftEye.y, this.dimensionsEye.width, this.dimensionsEye.height);
         this.canvasContext.strokeRect(this.coordsRightEye.x, this.coordsRightEye.y, this.dimensionsEye.width, this.dimensionsEye.height);
-        this.canvasContext.strokeStyle = _CONSTANTS.styleDebugStroke2;
+        this.canvasContext.strokeStyle = Constants.styleDebugStroke2;
         this.canvasContext.strokeRect(this.coordsLeftDodge.x, this.coordsLeftDodge.y, this.dimensionsDodge.width, this.dimensionsDodge.height);
-        this.canvasContext.strokeStyle =  _CONSTANTS.styleDebugStroke3;
+        this.canvasContext.strokeStyle =  Constants.styleDebugStroke3;
         this.canvasContext.strokeRect(this.coordsRightDodge.x, this.coordsRightDodge.y, this.dimensionsDodge.width, this.dimensionsDodge.height);
         console.log(this.state);
     }

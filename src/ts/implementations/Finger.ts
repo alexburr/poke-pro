@@ -2,18 +2,18 @@
 
 class Finger implements IFinger {
     
-    animationTimeout: number = _CONSTANTS.ms30fps * 2;
+    animationTimeout: number = Constants.ms30fps * 2;
     canvasContext: CanvasRenderingContext2D;
-    coords: coords = _CONSTANTS.coordsFinger1;
+    coords: coords = Constants.coordsFinger1;
     image: HTMLImageElement;
 
     constructor(canvasContext: CanvasRenderingContext2D) {
         this.canvasContext = canvasContext;
-        this.image = _IMAGES.getImageByName('srcFingerPoke1');
+        this.image = Images.fingerPoke1.image;
     }
 
     public animate(coords: coords): void {
-        if (_CONSTANTS.debug) { console.log("animate", coords); }
+        if (Constants.debug) { console.log("animate", coords); }
 
         // TODO: This needs to be more sophisticated. The finger should start centered on the bottom,
         // and animate to the selected coordinates, but should travel smoothly instead of jumping to
@@ -65,17 +65,17 @@ class Finger implements IFinger {
     }
 
     private setFinger1(): void {
-        this.coords = _CONSTANTS.coordsFinger1;
-        this.image = _IMAGES.getImageByName('srcFingerPoke1');
+        this.coords = Constants.coordsFinger1;
+        this.image = Images.fingerPoke1.image;
     }
 
     private setFinger2(coords: coords): void {
-        this.coords = Utilities.midWayPoint(_CONSTANTS.coordsFinger2, coords);
-        this.image = _IMAGES.getImageByName('srcFingerPoke2');
+        this.coords = Utilities.midWayPoint(Constants.coordsFinger2, coords);
+        this.image = Images.fingerPoke2.image;
     }
 
     private setFinger3(coords: coords): void {
-        this.image = _IMAGES.getImageByName('srcFingerPoke3');
+        this.image = Images.fingerPoke3.image;
         this.coords = { x: coords.x - this.image.width + 15, y: coords.y }; // This must be offset for the finger
     }
 }

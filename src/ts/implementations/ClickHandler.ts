@@ -5,20 +5,18 @@ class ClickHandler implements IClickHandler {
 
     face: IFace;
     finger: IFinger;
-    //pointFloater: IPointFloater;
     scoreKeeper: IScoreKeeper;
     pokeAnimationTimeout: number;
 
-    constructor(face: IFace, finger: IFinger, scoreKeeper: IScoreKeeper) { //, pointFloater: IPointFloater) {
+    constructor(face: IFace, finger: IFinger, scoreKeeper: IScoreKeeper) { 
         this.face = face;
         this.finger = finger;
-        //this.pointFloater = pointFloater;
         this.scoreKeeper = scoreKeeper;
         this.pokeAnimationTimeout = this.finger.getAnimationTimeout() * 2;
     }
 
     public handleClick(clickCoords: coords): void {
-        if (_CONSTANTS.debug) { console.log("handleClick", clickCoords); }
+        if (Constants.debug) { console.log("handleClick", clickCoords); }
 
         if (this.isCoordsInClickable(clickCoords)) {
             this.finger.animate(clickCoords);
@@ -30,8 +28,7 @@ class ClickHandler implements IClickHandler {
                 }, this.pokeAnimationTimeout);
 
                 if (faceClickResult == FaceClickResult.PokeLeft || faceClickResult == FaceClickResult.PokeRight) {
-                    //this.pointFloater.floatPoints(clickCoords, _CONSTANTS.pointsPoke);
-                    this.scoreKeeper.addToScore(true, _CONSTANTS.pointsPoke);
+                    this.scoreKeeper.addToScore(true, Constants.pointsPoke);
                     this.scoreKeeper.displayScore();
                 }
             }
@@ -39,6 +36,6 @@ class ClickHandler implements IClickHandler {
     }
 
     private isCoordsInClickable(coords: coords): boolean {
-        return Utilities.isCoordsInShape(coords, _CONSTANTS.coordsClickable, _CONSTANTS.dimensionsClickable);
+        return Utilities.isCoordsInShape(coords, Constants.coordsClickable, Constants.dimensionsClickable);
     }
 }

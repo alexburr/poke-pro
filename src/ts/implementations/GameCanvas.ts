@@ -10,7 +10,7 @@ class GameCanvas implements IGameCanvas {
     constructor(elementId: string) {
         this.canvas = <HTMLCanvasElement>document.getElementById(elementId);
         this.canvasContext = this.canvas.getContext('2d');
-        this.dimensions = { height: _CONSTANTS.canvasHeight, width: _CONSTANTS.canvasWidth };
+        this.dimensions = { height: Constants.canvasHeight, width: Constants.canvasWidth };
     }
 
     public getCanvas(): HTMLCanvasElement {

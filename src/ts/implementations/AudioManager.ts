@@ -6,7 +6,7 @@ class AudioManager implements IAudioManager {
 
     audioSoundEffects: audioSoundEffect[] = [];
     currentSound: HTMLAudioElement = null;
-    sounds: sound[] = _SOUNDS;
+    sounds: sound[] = [ Sounds.ow1, Sounds.ow3, Sounds.ow5, Sounds.ow8, Sounds.eh, Sounds.fill, Sounds.music ];
     loadedSounds: number = 0;
 
     constructor() {
@@ -22,7 +22,7 @@ class AudioManager implements IAudioManager {
             htmlAudio.onended = () => {
                 this.clearSound();
             }
-            const audioSoundEffect: audioSoundEffect = { htmlAudioElement: htmlAudio, name: sound.name };
+            const audioSoundEffect: audioSoundEffect = { htmlAudioElement: htmlAudio, sound: sound };
             this.audioSoundEffects.push(audioSoundEffect);
         });
     }
@@ -35,10 +35,10 @@ class AudioManager implements IAudioManager {
         return (this.currentSound.currentTime == 0 || this.currentSound == null);
     }
 
-    public playSoundEffect(name: string): void {
+    public playSoundEffect(soundEffect: sound): void {
         if (!this.getAudioLoaded) { return; }
 
-        let audioSoundEffect: audioSoundEffect = this.audioSoundEffects.find(aSE => aSE.name ===  name);
+        let audioSoundEffect: audioSoundEffect = this.audioSoundEffects.find(aSE => aSE.sound.name === soundEffect.name);
 
         if (audioSoundEffect != null) {
             this.stopSound();

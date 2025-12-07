@@ -8,8 +8,8 @@ class ScoreKeeper implements IScoreKeeper {
     canvasContext: CanvasRenderingContext2D;
     currentScore: score;
     previousScore: score;
-    coords: coords = _CONSTANTS.coordsScore;
-    pointsDefault: number = _CONSTANTS.pointsPoke;
+    coords: coords = Constants.coordsScore;
+    pointsDefault: number = Constants.pointsPoke;
 
     constructor() {
         this.currentScore = { value: 0, text: Utilities.pad(0,9) };
@@ -29,7 +29,7 @@ class ScoreKeeper implements IScoreKeeper {
 
         this.currentScore.text = `${Utilities.pad(this.currentScore.value,9)}`;
 
-        if (_CONSTANTS.debug) { console.log(this.currentScore); }
+        if (Constants.debug) { console.log(this.currentScore); }
 
         return points;
     }
@@ -45,7 +45,7 @@ class ScoreKeeper implements IScoreKeeper {
     public displayScore(): void {
         this.clearScore();
         this.setFont();
-        this.canvasContext.fillStyle = _CONSTANTS.styleText;
+        this.canvasContext.fillStyle = Constants.styleText;
         this.canvasContext.fillText(this.currentScore.text, this.coords.x, this.coords.y);
     }
 
@@ -65,7 +65,7 @@ class ScoreKeeper implements IScoreKeeper {
     }
 
     private setFont(): void {
-        this.canvasContext.font = `${_CONSTANTS.fontSizeScore} "${_CONSTANTS.font}"`;
+        this.canvasContext.font = `${Constants.fontSizeScore} "${Constants.font}"`;
         this.canvasContext.textAlign = "right";
     }
 }

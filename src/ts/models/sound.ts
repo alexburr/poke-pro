@@ -9,5 +9,5 @@ class sound {
 
 class audioSoundEffect {
     htmlAudioElement: HTMLAudioElement;
-    name: string;
+    sound: sound;
 }

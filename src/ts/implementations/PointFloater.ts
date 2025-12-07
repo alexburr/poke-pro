@@ -12,8 +12,8 @@ class PointFloater implements IPointFloater {
     constructor(gameCanvasContext: CanvasRenderingContext2D) {
         this.canvasContext = gameCanvasContext;
 
-        this.canvasContext.font = `12px "${_CONSTANTS.font}"`;
-        this.canvasContext.fillStyle = _CONSTANTS.styleText;
+        this.canvasContext.font = `12px "${Constants.font}"`;
+        this.canvasContext.fillStyle = Constants.styleText;
     }
 
     public floatPoints(coords: coords, points: number): void {

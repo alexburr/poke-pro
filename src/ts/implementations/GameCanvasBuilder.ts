@@ -28,8 +28,8 @@ class GameCanvasBuilder implements IGameCanvasBuilder {
     private buildCanvas(canvasId: string): HTMLCanvasElement {
         const canvas: HTMLCanvasElement = document.createElement("canvas");
         canvas.id = canvasId;
-        canvas.width = _CONSTANTS.canvasWidth;
-        canvas.height = _CONSTANTS.canvasHeight;
+        canvas.width = Constants.canvasWidth;
+        canvas.height = Constants.canvasHeight;
         this.canvasContainer.appendChild(canvas);
         return canvas;
     }
