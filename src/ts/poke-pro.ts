@@ -30,7 +30,6 @@ window.onload = () => {
     WebFont.load({
         google: { families: [Constants.font] },
         active: () => { 
-            debugger;
             _startUp.showStartupText();
             _startUp.waitForClick(this.handleStartupClick);
         }
@@ -38,9 +37,13 @@ window.onload = () => {
 };
 
 function handleStartupClick(): void {
-    this.playMusic();
     _startUp.close();
+    _status.showStatus(this.gameInit);
+}
+
+function gameInit(): void {
     _status.close();
+    this.playMusic();
     _scoreKeeper.init(_canvasCollection.canvasScore.context);
     _powerMeter.init();
 

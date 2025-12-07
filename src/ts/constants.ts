@@ -18,6 +18,7 @@ class Constants {
     static durationDodge: number = 250;
     static durationPoke: number = 250;
     static font: string = 'Press Start 2P';
+    static fontSizeStatus: string = '9px';
     static fontSizeScore: string = '18px';
     static imagesPath: string = './images';
     static messageHit: string = "OUCH!";
@@ -33,7 +34,7 @@ class Constants {
     static styleDebugStroke4: string = 'rgb(0, 255, 0)';
     static styleText: string = 'rgb(255, 255, 255)';
     static textScore: string = '';
-    static textStartup: string = 'CLICK TO BEGIN!';
+    static textStartup: string = 'CLICK TO BEGIN';
     static timeoutWeaponAppear: number = 3000;
     static timeoutWeaponDisappear: number = 3000;
     static timeoutWeaponHighlight: number = 50;

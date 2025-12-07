@@ -1,4 +1,4 @@
 interface IStatus {
-    showStatus(): void;
+    showStatus(callback: () => any): void;
     close(): void;
 }
