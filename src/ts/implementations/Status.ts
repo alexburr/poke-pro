@@ -1,4 +1,5 @@
 class Status implements IStatus {
+    audio: HTMLAudioElement;
     canvas: HTMLCanvasElement;
     canvasContext: CanvasRenderingContext2D;
     containerId: string;
@@ -23,6 +24,8 @@ class Status implements IStatus {
         this.canvasContext = canvasPair.context;
         this.canvas = canvasPair.canvas;
         this.containerId = containerId;
+        this.audio = new Audio(Sounds.beep.src);
+        this.audio.volume = 0.25;
     }
 
     public showStatus(callback: () => any): void {        
@@ -38,7 +41,7 @@ class Status implements IStatus {
                 var text: string = this.text[i]
                 timeout = baseTimeout * (i + 1);
                 this.displayTextRow(text);
-
+                this.audio.play(); 
                 if (i == this.text.length - 1) {
                     setTimeout(() => callback(), baseTimeout * 4);
                 }

@@ -90,6 +90,7 @@ class Sounds {
     static ow7: sound = { name: "ow7", src: `${Constants.soundsPath}/ow7.mp3` };
     static ow8: sound = { name: "ow8", src: `${Constants.soundsPath}/ow8.mp3` };
     static eh: sound = { name: "eh", src: `${Constants.soundsPath}/eh.mp3` };
+    static beep: sound = { name: "beep", src: `${Constants.soundsPath}/beep.mp3` };
     static fill: sound = { name: "fill", src: `${Constants.soundsPath}/fill.mp3` };
     static music: sound = { name: "music", src: `${Constants.soundsPath}/music.mp3` };
 }
