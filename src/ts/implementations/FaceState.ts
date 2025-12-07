@@ -1,14 +1,12 @@
 class SoundImagePair {
-    src: string;
-    sound: string;
+    sound: sound;
+    image: ImageObject;
 }
 
 class FaceState implements IFaceState {
     stateType: FaceStateType;
     duration: number;
     soundImages: SoundImagePair[];
-    // src: string[];
-    // sounds: string[];
 
     public static getStateByType(faceStates: FaceState[], typeToFind: FaceStateType): FaceState {
         return faceStates.find( ({ stateType }) => stateType === typeToFind );

@@ -12,6 +12,7 @@ class GameCanvasBuilder implements IGameCanvasBuilder {
     canvasScore: HTMLCanvasElement;
     canvasClick: HTMLCanvasElement;
     //canvasPointFloater: HTMLCanvasElement;
+    canvasStatus: HTMLCanvasElement;
     canvasStartup: HTMLCanvasElement;
 
     constructor(containerId: string) {
@@ -22,14 +23,15 @@ class GameCanvasBuilder implements IGameCanvasBuilder {
         this.canvasScore = this.buildCanvas("canvasScore");
         this.canvasClick = this.buildCanvas("canvasClick"); 
         //this.canvasPointFloater = this.buildCanvas("canvasPointFloater"); 
+        this.canvasStatus = this.buildCanvas("canvasStatus"); 
         this.canvasStartup = this.buildCanvas("canvasStartup"); 
     }
 
     private buildCanvas(canvasId: string): HTMLCanvasElement {
         const canvas: HTMLCanvasElement = document.createElement("canvas");
         canvas.id = canvasId;
-        canvas.width = _CONSTANTS.canvasWidth;
-        canvas.height = _CONSTANTS.canvasHeight;
+        canvas.width = Constants.canvasWidth;
+        canvas.height = Constants.canvasHeight;
         this.canvasContainer.appendChild(canvas);
         return canvas;
     }
@@ -42,6 +44,7 @@ class GameCanvasBuilder implements IGameCanvasBuilder {
             canvasScore: new GameCanvas(this.canvasScore.id),
             canvasClick: new GameCanvas(this.canvasClick.id),
             //canvasPointFloater: new GameCanvas(this.canvasPointFloater.id),
+            canvasStatus: new GameCanvas(this.canvasStatus.id),
             canvasStartup: new GameCanvas(this.canvasStartup.id)
         };
         return {
@@ -51,7 +54,9 @@ class GameCanvasBuilder implements IGameCanvasBuilder {
             canvasScore: { canvas: _gameGanvasCollection.canvasScore.getCanvas(), context: _gameGanvasCollection.canvasScore.getContext() },
             canvasClick: { canvas: _gameGanvasCollection.canvasClick.getCanvas(), context: _gameGanvasCollection.canvasClick.getContext() },
             //canvasPointFloater: { canvas: _gameGanvasCollection.canvasPointFloater.getCanvas(), context: _gameGanvasCollection.canvasPointFloater.getContext() },
+            canvasStatus: { canvas: _gameGanvasCollection.canvasStatus.getCanvas(), context: _gameGanvasCollection.canvasStatus.getContext() },
             canvasStartup: { canvas: _gameGanvasCollection.canvasStartup.getCanvas(), context: _gameGanvasCollection.canvasStartup.getContext() }
+            
         };
     }
 }

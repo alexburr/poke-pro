@@ -1,4 +1,4 @@
-/// <reference path="../Interfaces/IGameCanvas.ts" />
+//// <reference path="../Interfaces/IGameCanvas.ts" />
 /// <reference path="canvasContextPair.ts" />
 
 class canvasCollection {
@@ -8,5 +8,6 @@ class canvasCollection {
     canvasScore: canvasContextPair;
     //canvasPointFloater: canvasContextPair;
     canvasClick: canvasContextPair;
+    canvasStatus: canvasContextPair;
     canvasStartup: canvasContextPair;
 }

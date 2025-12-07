@@ -1,143 +1,139 @@
 /// <reference path="Implementations/Face.ts" />
-/// <reference path="Implementations/Images.ts" />
+/// <reference path="Implementations/ImageObject.ts" />
+/// <reference path="models/sound.ts" />
 
 class Constants {
-    canvasHeight: number;
-    canvasWidth: number;
-    coordsClickable: coords;
-    coordsLeftEye: coords;
-    coordsRightEye: coords;
-    coordsFace: coords;
-    coordsFinger1: coords;
-    coordsFinger2: coords;
-    coordsScore: coords;
-    debug: boolean;
-    dimensionsClickable: dimensions;
-    dimensionsEye: dimensions;
-    durationDodge: number;
-    durationPoke: number;
-    // dimensionsWeapon: dimensions;
-    font: string;
-    fontSizeScore: string;
-    // fontScore: string;
-    // fontScoreFloat: string;
-    messageHit: string;
-    messageMiss: string;
-    ms60fps: number;
-    ms30fps: number;
-    styleDebugStrokeWidth: number;
-    styleDebugStroke1: string;
-    styleDebugStroke2: string;
-    styleDebugStroke3: string;
-    styleDebugStroke4: string;
-    styleText: string;
-    pointsPoke: number;
-    //pointsWeaponPoke: number;
-    textScore: string;
-    textStartup: string;
-    timeoutWeaponAppear: number;
-    timeoutWeaponDisappear: number;
-    timeoutWeaponHighlight: number;
+    static canvasHeight: number = 273;
+    static canvasWidth: number = 640;
+    static coordsClickable: coords = { x: 170, y: 50 };
+    static coordsLeftEye: coords = { x: 290, y: 85 };
+    static coordsRightEye: coords = { x: 333, y: 85 };
+    static coordsFace: coords = { x: 135, y: 0 };
+    static coordsFinger1: coords = { x: 170, y: 233 };
+    static coordsFinger2: coords = { x: 170, y: 233 };
+    static coordsScore: coords = { x: 610, y: 30 };
+    static debug: boolean = false;
+    static dimensionsClickable: dimensions = { width: 300, height: 200 };
+    static dimensionsEye: dimensions = { width: 23, height: 10 };
+    static durationDodge: number = 250;
+    static durationPoke: number = 250;
+    static font: string = 'Press Start 2P';
+    static fontSizeStatus: string = '6px';
+    static fontSizeScore: string = '18px';
+    static imagesPath: string = './images';
+    static messageHit: string = "OUCH!";
+    static messageMiss: string = "miss";
+    static ms60fps: number = 16;
+    static ms30fps: number = 33;
+    static pointsPoke: number = 3;
+    static soundsPath: string = '././sounds';
+    static styleDebugStrokeWidth: number = 1;
+    static styleDebugStroke1: string = 'rgb(255, 255, 0)';
+    static styleDebugStroke2: string = 'rgb(255, 0, 0)';
+    static styleDebugStroke3: string = 'rgb(0, 0, 255)';
+    static styleDebugStroke4: string = 'rgb(0, 255, 0)';
+    static styleText: string = 'rgb(255, 255, 255)';
+    static textScore: string = '';
+    static textStartup: string = 'CLICK TO BEGIN';
+    static textStatus: string[] = [
+        "INITIALIZING FINGER MATRIX...DONE",
+        "LEFT EYEBALL CHECK...NOMINAL",
+        "RIGHT EYEBALL CHECK...NOMINAL",
+        "DODGE DIAGNOSTICS",
+        "    LEFT DODGE OK",
+        "    RIGHT DODGE OK",
+        "    DUCK DISABLED",
+        "SILLY SOUNDS",
+        "    OOF OK",
+        "    OUCH OK",
+        "    YELP OK",
+        "    HOLLER OK",
+        "    GIGGLE DISABLED",
+        "WEAPONS CHECK...ALL WEAPONS ACCOUNTED FOR",
+        "EXECUTING HYDRA MECHANISM...SUCCESS",
+        "POWER METER STATUS CHECK...ENERGY AT MAXIMUM",
+        "POKE BACK FEATURE DISABLED",
+        "POKEX EXTENSIONS INTIALIZING...",
+        "    POKEX.POKEEYE",
+        "    POKEX.DODGE",
+        "    POKEX.RETRIEVEWEAPON",
+        "    POKEX.STATS",
+        "POKEX EXTENSIONS DEPLOYED",
+        "ALEX RETRIEVAL UNDERWAY...RETRIEVAL SUCCESSFUL",
+        "ENTERING LEVEL 1"
+    ];
+    static timeoutWeaponAppear: number = 3000;
+    static timeoutWeaponDisappear: number = 3000;
+    static timeoutWeaponHighlight: number = 50;
 }
 
-const _CONSTANTS: Constants = {
-    canvasHeight: 273, //480, (diff 207)
-    canvasWidth: 640,
-    coordsClickable: { x: 170, y: 50 }, //y: 240 },
-    coordsFace: { x: 135, y: 0 }, //200
-    coordsFinger1: { x: 170, y: 233 }, // 440 },
-    coordsFinger2: { x: 170, y: 233 }, // 440 },
-    coordsLeftEye: { x: 290, y: 85 }, //285 },
-    coordsRightEye: { x: 333, y: 85 }, //285 },
-    coordsScore: { x: 610, y: 30 }, // { x: 10, y: 30 },
-    debug: false,
-    // dimensionsWeapon: { width: 50, height: 50 },
-    dimensionsClickable: { width: 300, height: 200 },
-    dimensionsEye: { width: 23, height: 10 },
-    durationDodge: 250,
-    durationPoke: 250,
-    font: 'Press Start 2P',
-    fontSizeScore: '18px',
-    // fontScore: '48px Press Start 2P',
-    // fontScoreFloat: '24px Press Start 2P',
-    messageHit: "OUCH!",
-    messageMiss: "miss",
-    ms60fps: 16,
-    ms30fps: 33,
-    styleDebugStrokeWidth: 1,
-    styleDebugStroke1: 'rgb(255, 255, 0)',
-    styleDebugStroke2: 'rgb(255, 0, 0)',
-    styleDebugStroke3: 'rgb(0, 0, 255)',
-    styleDebugStroke4: 'rgb(0, 255, 0)',
-    styleText: 'rgb(255, 255, 255)',
-    pointsPoke: 3,
-    //pointsWeaponPoke: 10,
-    textScore: '', //'SCORE:',
-    textStartup: 'CLICK TO BEGIN',
-    timeoutWeaponAppear: 3000,
-    timeoutWeaponDisappear: 3000,
-    timeoutWeaponHighlight: 50
+class Images {
+    static faceStandard: ImageObject = new ImageObject({ name: "srcFaceStandard", src: `${Constants.imagesPath}/face-standard.png` });
+    static facePokeRight1: ImageObject = new ImageObject({ name: "srcFacePokeRight1", src: `${Constants.imagesPath}/face-poke-right1.png` });
+    static facePokeRight2: ImageObject = new ImageObject({ name: "srcFacePokeRight2", src: `${Constants.imagesPath}/face-poke-right2.png` });
+    static facePokeLeft1: ImageObject = new ImageObject({ name: "srcFacePokeLeft1", src: `${Constants.imagesPath}/face-poke-left1.png` });
+    static facePokeLeft2: ImageObject = new ImageObject({ name: "srcFacePokeLeft2", src: `${Constants.imagesPath}/face-poke-left2.png` });
+    static faceDodgeLeft1: ImageObject = new ImageObject({ name: "srcFaceDodgeLeft1", src: `${Constants.imagesPath}/face-dodge-left1.png` });
+    static faceDodgeRight1: ImageObject = new ImageObject({ name: "srcFaceDodgeRight1", src: `${Constants.imagesPath}/face-dodge-right1.png` });
+    static fingerPoke1: ImageObject = new ImageObject({ name: "srcFingerPoke1", src: `${Constants.imagesPath}/fingerpoke1.png` });
+    static fingerPoke2: ImageObject = new ImageObject({ name: "srcFingerPoke2", src: `${Constants.imagesPath}/fingerpoke2.png` });
+    static fingerPoke3: ImageObject = new ImageObject({ name: "srcFingerPoke3", src: `${Constants.imagesPath}/fingerpoke3.png` });
 }
 
-const _IMAGES: Images = new Images([
-    { name: "srcFaceStandard", src: './images/face-standard.png' },
-    { name: "srcFacePokeRight1", src: './images/face-poke-right1.png' },
-    { name: "srcFacePokeRight2", src: './images/face-poke-right2.png' },
-    { name: "srcFacePokeLeft1", src: './images/face-poke-left1.png' },
-    { name: "srcFacePokeLeft2", src: './images/face-poke-left2.png' },
-    { name: "srcFaceDodgeLeft1", src: './images/face-dodge-left1.png' },
-    { name: "srcFaceDodgeRight1", src: './images/face-dodge-right1.png' },
-    { name: "srcFingerPoke1", src: "./images/fingerpoke1.png" },
-    { name: "srcFingerPoke2", src: "./images/fingerpoke2.png" },
-    { name: "srcFingerPoke3", src: "./images/fingerpoke3.png" }
-]);
+class Sounds {
+    static ow1: sound = { name: "ow1", src: `${Constants.soundsPath}/ow1.mp3` };
+    static ow2: sound = { name: "ow2", src: `${Constants.soundsPath}/ow2.mp3` };
+    static ow3: sound = { name: "ow3", src: `${Constants.soundsPath}/ow3.mp3` };
+    static ow4: sound = { name: "ow4", src: `${Constants.soundsPath}/ow4.mp3` };
+    static ow5: sound = { name: "ow5", src: `${Constants.soundsPath}/ow5.mp3` };
+    static ow6: sound = { name: "ow6", src: `${Constants.soundsPath}/ow6.mp3` };
+    static ow7: sound = { name: "ow7", src: `${Constants.soundsPath}/ow7.mp3` };
+    static ow8: sound = { name: "ow8", src: `${Constants.soundsPath}/ow8.mp3` };
+    static eh: sound = { name: "eh", src: `${Constants.soundsPath}/eh.mp3` };
+    static fill: sound = { name: "fill", src: `${Constants.soundsPath}/fill.mp3` };
+    static music: sound = { name: "music", src: `${Constants.soundsPath}/music.mp3` };
+}
 
 const _FACESTATES: FaceState[] = [
     { 
         stateType: FaceStateType.Standard, 
         duration: 0, 
         soundImages: [
-            { src:_IMAGES.getImgSrcByName("srcFaceStandard"), sound: null }
+            { image: Images.faceStandard, sound: null }
         ]
     },
     { 
         stateType: FaceStateType.PokeRight, 
-        duration: _CONSTANTS.durationPoke, 
+        duration: Constants.durationPoke, 
         soundImages: [
-            { src: _IMAGES.getImgSrcByName("srcFacePokeRight1"), sound: "ow8" },
-            { src: _IMAGES.getImgSrcByName("srcFacePokeRight2"), sound: "ow1" }
+            { image: Images.facePokeRight1, sound: Sounds.ow1 },
+            { image: Images.facePokeRight1, sound: Sounds.ow6 },
+            { image: Images.facePokeRight2, sound: Sounds.ow2 },            
+            { image: Images.facePokeRight2, sound: Sounds.ow8 }
         ]
     },
     { 
         stateType: FaceStateType.PokeLeft, 
-        duration: _CONSTANTS.durationPoke, 
+        duration: Constants.durationPoke, 
         soundImages: [
-            { src: _IMAGES.getImgSrcByName("srcFacePokeLeft1"), sound: "ow5" },
-            { src: _IMAGES.getImgSrcByName("srcFacePokeLeft2"), sound: "ow3" }
+            { image: Images.facePokeLeft1, sound: Sounds.ow3 },
+            { image: Images.facePokeLeft2, sound: Sounds.ow4 },
+            { image: Images.facePokeLeft2, sound: Sounds.ow5 },
+            { image: Images.facePokeLeft2, sound: Sounds.ow7 }
         ]
     },
     { 
         stateType: FaceStateType.DodgeRight, 
-        duration: _CONSTANTS.durationDodge, 
+        duration: Constants.durationDodge, 
         soundImages: [
-            { src: _IMAGES.getImgSrcByName("srcFaceDodgeRight1"), sound: "eh" }
+            { image: Images.faceDodgeRight1, sound: Sounds.eh }
         ]
     },    
     { 
         stateType: FaceStateType.DodgeLeft, 
-        duration: _CONSTANTS.durationDodge, 
+        duration: Constants.durationDodge, 
         soundImages: [
-            { src: _IMAGES.getImgSrcByName("srcFaceDodgeLeft1"), sound: "eh" }
+            { image: Images.faceDodgeLeft1, sound: Sounds.eh }
         ]
     }
-];
-
-const _SOUNDS: sound[] = [
-    { name: "ow1", src: "././sounds/ow1.mp3" },
-    { name: "ow3", src: "././sounds/ow3.mp3" },
-    { name: "ow5", src: "././sounds/ow5.mp3" },
-    { name: "ow8", src: "././sounds/ow8.mp3" },
-    { name: "eh", src: "././sounds/eh.mp3" },
-    { name: "fill", src: "././sounds/fill.mp3 "},
-    { name: "music", src: "././sounds/music.mp3" }
 ];

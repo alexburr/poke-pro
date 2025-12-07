@@ -3,8 +3,7 @@ class Startup implements IStartup {
     canvas: HTMLCanvasElement;
     canvasContext: CanvasRenderingContext2D;
     containerId: string;
-    isClick: boolean = false;
-    text: string = _CONSTANTS.textStartup;
+    text: string = Constants.textStartup;
     music: sound;
     textMetrics: TextMetrics;
     textCoords: coords;
@@ -17,28 +16,17 @@ class Startup implements IStartup {
 
     public waitForClick(callback: () => any): void {
         this.canvas.addEventListener('mousedown', () => {
-            this.isClick = true;            
-            this.playMusic();
-            this.close();
+            //this.isClick = true;            
+            //this.playMusic();
+            //this.close();
             callback();
         });
     }
 
-    public playMusic(): void {
-        this.music = sound.getSoundByName(_SOUNDS, "music");
-        const htmlAudio: HTMLAudioElement = new Audio(this.music.src);
-        htmlAudio.volume = 0.15;
-        htmlAudio.loop = true;
-        setTimeout(() => {
-            
-        htmlAudio.play();
-        }, 1800);
-    }
-
     public showStartupText(): void {
-        this.canvasContext.font = `${_CONSTANTS.fontSizeScore} "${_CONSTANTS.font}"`;
+        this.canvasContext.font = `${Constants.fontSizeScore} "${Constants.font}"`;
         this.canvasContext.textAlign = "left";
-        this.canvasContext.fillStyle = _CONSTANTS.styleText;
+        this.canvasContext.fillStyle = Constants.styleText;
         this.textMetrics = this.canvasContext.measureText(this.text);
         this.textCoords = { x: (this.canvas.width / 2) - (this.textMetrics.width / 2), y: (this.canvas.height / 2) - (this.textMetrics.actualBoundingBoxAscent / 2) + 25 };
         this.displayText();
