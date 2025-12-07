@@ -8,5 +8,6 @@ class canvasCollection {
     canvasScore: canvasContextPair;
     //canvasPointFloater: canvasContextPair;
     canvasClick: canvasContextPair;
+    canvasStatus: canvasContextPair;
     canvasStartup: canvasContextPair;
 }

@@ -6,7 +6,7 @@ class AudioManager implements IAudioManager {
 
     audioSoundEffects: audioSoundEffect[] = [];
     currentSound: HTMLAudioElement = null;
-    sounds: sound[] = [ Sounds.ow1, Sounds.ow3, Sounds.ow5, Sounds.ow8, Sounds.eh, Sounds.fill, Sounds.music ];
+    sounds: sound[] = [ Sounds.ow1, Sounds.ow2, Sounds.ow3, Sounds.ow4, Sounds.ow5, Sounds.ow6, Sounds.ow7, Sounds.ow8, Sounds.eh, Sounds.fill, Sounds.music ];
     loadedSounds: number = 0;
 
     constructor() {
