@@ -3,7 +3,8 @@
         "module": "amd",
         "target": "es6",
         "sourceMap": false,
-        "outFile": "src/js_temp/poke-pro.js"
+        "outFile": "src/js_temp/poke-pro.js",
+        "forceConsistentCasingInFileNames": false
     },
     "include": [
       "src/ts/**/*.ts"

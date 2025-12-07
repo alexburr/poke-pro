@@ -25,7 +25,11 @@ class Constants {
     messageMiss: string;
     ms60fps: number;
     ms30fps: number;
-    styleDebugStroke: string;
+    styleDebugStrokeWidth: number;
+    styleDebugStroke1: string;
+    styleDebugStroke2: string;
+    styleDebugStroke3: string;
+    styleDebugStroke4: string;
     styleText: string;
     pointsPoke: number;
     //pointsWeaponPoke: number;
@@ -60,7 +64,11 @@ const _CONSTANTS: Constants = {
     messageMiss: "miss",
     ms60fps: 16,
     ms30fps: 33,
-    styleDebugStroke: 'rgb(255, 255, 0)',
+    styleDebugStrokeWidth: 1,
+    styleDebugStroke1: 'rgb(255, 255, 0)',
+    styleDebugStroke2: 'rgb(255, 0, 0)',
+    styleDebugStroke3: 'rgb(0, 0, 255)',
+    styleDebugStroke4: 'rgb(0, 255, 0)',
     styleText: 'rgb(255, 255, 255)',
     pointsPoke: 3,
     //pointsWeaponPoke: 10,
