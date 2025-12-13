@@ -57,6 +57,9 @@ typings/
 # dotenv environment variables file
 .env
 
+# MuseScore backup folder
+.mscbackup/
+
 # Output of Typescript compiler, LESS transpiler & CPS
 public/js/
 public/css/
